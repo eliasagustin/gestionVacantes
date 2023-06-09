@@ -2,7 +2,7 @@
 
     <div class="navbar-brand">
         <a class="navbar-item" href="index.php?vista=home">
-        <img src="./img/logo.png" width="40" height="80">
+        <img src="./img/logo.png" alt="Modulo Gestion de Vacantes" width="40" height="80">
         </a>
 
         <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
@@ -15,7 +15,9 @@
     
     <div id="navbarBasicExample" class="navbar-menu">
         <div class="navbar-start">
-            <h1 class="title">Gestión de Vacantes</h1>
+            <div class="navbar-item">
+                <h1 class="title">Gestión de Vacantes</h1>
+            </div>
             <!--
             <div class="navbar-item has-dropdown is-hoverable">
                 <a class="navbar-link">Usuarios</a>                      
@@ -51,12 +53,15 @@
         </div>
 
         <div class="navbar-end">
+            <div class="navbar-item">Actualemente estas designado con rol de <?php echo $_SESSION['rol']; ?></div>
+            <hr class="navbar-divider">
             <div class="navbar-item">
                 <div class="buttons">
+                    <!--
                     <a href="index.php?vista=user_update&user_id_up=<?php echo $_SESSION['id']; ?>" class="button is-primary is-rounded">
                         Mi cuenta
                     </a>
-
+                    -->
                     <a href="index.php?vista=logout" class="button is-link is-rounded">
                         Salir
                     </a>
