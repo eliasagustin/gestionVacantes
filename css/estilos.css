@@ -1,0 +1,40 @@
+body,html{
+	height: 100%;
+	width: 100%;
+}
+.main-container{
+	height: 100%;
+	width: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	background-image: url(https://upload.wikimedia.org/wikipedia/commons/4/41/Rosario_desde_el_Rio_Parana.jpg);
+	background-position: center; /* Center the image */
+	background-repeat: no-repeat; /* Do not repeat the image */
+  	background-size: cover; /* Resize the background image to cover the entire container */
+}
+.main-container > .login,
+.main-container > .hero-body{
+	height: auto;
+	width: 100%;
+	max-width: 400px;
+	min-width: 300px;
+}
+
+.login {
+	background: rgba(000, 000, 000, 0.75);
+    border-radius: 4px;
+
+	.title {
+		margin-bottom: 20px;
+		font-weight: 600;
+		color: white;
+	}
+	.label {
+		font-weight: 400;
+		color: white;
+	}
+}
+.form-inline{
+	display: inline-flex;
+}
