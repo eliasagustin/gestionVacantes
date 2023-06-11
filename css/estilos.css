@@ -21,6 +21,10 @@ body,html{
 	min-width: 300px;
 }
 
+.centrar{
+	text-align: center;
+}
+
 .login {
 	background: rgba(000, 000, 000, 0.75);
     border-radius: 4px;

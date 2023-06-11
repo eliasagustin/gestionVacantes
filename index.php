@@ -16,7 +16,7 @@
                 /*== Cerrar sesion ==*/
                 if((!isset($_SESSION['id']) || $_SESSION['id']=="") || (!isset($_SESSION['usuario']) || $_SESSION['usuario']=="")){
                     include "./vistas/logout.php";
-                    exit();
+                    //exit();
                 }
 
                 include "./inc/navbar.php";

@@ -53,18 +53,25 @@
         </div>
 
         <div class="navbar-end">
-            <div class="navbar-item">Actualemente estas designado con rol de <?php echo $_SESSION['rol']; ?></div>
+            <div class="navbar-item">Actualmente estás designado con rol de "
+            
+            <?php require "./php/rol_consulta.php"; ?>
+            "</div>
             <hr class="navbar-divider">
             <div class="navbar-item">
                 <div class="buttons">
-                    <!--
-                    <a href="index.php?vista=user_update&user_id_up=<?php echo $_SESSION['id']; ?>" class="button is-primary is-rounded">
-                        Mi cuenta
-                    </a>
-                    -->
-                    <a href="index.php?vista=logout" class="button is-link is-rounded">
-                        Salir
-                    </a>
+                    <?php 
+                        if (isset($_SESSION['rol'])){
+                            echo ' <a href="index.php?vista=logout" class="button is-link is-rounded">
+                                        Salir
+                                    </a>';
+                        } else {
+                            echo ' <a href="index.php?vista=login" class="button is-link is-rounded">
+                                        Log In
+                                    </a>';
+                        }
+                    ?>
+                   
                 </div>
             </div>
         </div>
@@ -77,15 +84,15 @@
       
         <aside class="menu">
             <ul class="menu-list">
-                <li><a class="is-active">Inicio</a></li>
-                <a class="is-active">Vacantes</a>
-                <li><a class="is-active">Abrir vacante</a>
+                <li><a class="is-active" href="index.php?vista=home">Inicio</a></li>
+                <li><a class="is-active" href="index.php?vista=vacante">Vacantes</a>
                     <ul>
-                        <li><a>Listar vacantes abiertas</a></li>
-                        <li><a>Listar vacantes</a></li>
+                        <li><a href="index.php?vista=abrir_vacante">Abrir vacante</a></li>
+                        <li><a href="index.php?vista=listar_vacantes_abiertas">Listar vacantes abiertas</a></li>
+                        <li><a href="index.php?vista=listar_vacantes">Listar vacantes</a></li>
                     </ul>
                 </li>
-                <li><a class="is-active">Postulaciones</a>
+                <li><a class="is-active" href="index.php?vista=postulacion">Postulaciones</a>
                     <ul>
                         <li><a>Mis postulaciones</a></li>
                     </ul>
