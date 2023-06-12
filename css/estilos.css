@@ -21,8 +21,22 @@ body,html{
 	min-width: 300px;
 }
 
+.form-container{
+	height: 100%;
+	width: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
 .centrar{
 	text-align: center;
+}
+
+.label-formulario{
+	font-size:20px;
+	margin-top:12px;
+    display:inline-block;
 }
 
 .login {
