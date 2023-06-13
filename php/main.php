@@ -49,8 +49,8 @@
 	}
 
 
-	# Funcion renombrar fotos #
-	function renombrar_fotos($nombre){ //TODO quizas sirva para renombrar archivos de CV aunque no se si tiene debo incluir esta funcionalidad
+	# Funcion renombrar archivos #
+	function renombrar_archivos($nombre){
 		$nombre=str_ireplace(" ", "_", $nombre);
 		$nombre=str_ireplace("/", "_", $nombre);
 		$nombre=str_ireplace("#", "_", $nombre);

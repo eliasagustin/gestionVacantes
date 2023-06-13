@@ -2,7 +2,9 @@
 <div class="container is-fluid">
     <h1 class="title">Listado de Vacantes Abiertas</h1>
 </div>
-
+<?php 
+    require "./php/guard.php";
+?>
 <div class="container pb-6 pt-6">  
 <?php
         require_once "./php/main.php";
@@ -13,7 +15,7 @@
             require_once "./php/usuario_eliminar.php";
         }
         */
-        # Seteo las variables necesarias para que funcione el paginador, luego lo llamo #
+        # Seteo las variables necesarias para que funcione el PAGINADOR, luego lo llamo #
         if(!isset($_GET['page'])){ // consulto si viene pag iniciada
             $pagina=1;              //la inicio
         }else{

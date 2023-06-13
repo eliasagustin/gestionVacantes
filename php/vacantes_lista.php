@@ -1,5 +1,48 @@
+
+
 <?php
-	$inicio = ($pagina>0) ? (($pagina * $registros)-$registros) : 0;
+    	/*== Almacenando datos ==*/
+if(isset($_POST['estado'])){
+        $Almacenando = "";
+    if( (isset($_POST['estado'])) && ($_POST['estado']!=null) && $_POST['estado'] !="" ){
+        //busqueda por estado para agregarlo a cadena
+        $Almacenando.= $_POST['estado'].";<br>";
+    }
+    if( (isset($_POST['vacante_materia'])) && ($_POST['vacante_materia']!=null) && $_POST['vacante_materia'] !="" ){
+        //busqueda por id de materia para agregarlo a cadena
+        $Almacenando.= $_POST['vacante_materia'].";<br>";
+    }
+    if( (isset($_POST['fecha_apertura_I'])) && ($_POST['fecha_apertura_I']!=null) && $_POST['fecha_apertura_I'] !="" ){
+        //busqueda por fecha_apertura para agregarlo a cadena
+        $Almacenando.= $_POST['fecha_apertura_I'].";<br>";
+    }
+    if( (isset($_POST['fecha_cierre_I'])) && ($_POST['fecha_cierre_I']!=null) && $_POST['fecha_cierre_I'] !="" ){
+        //busqueda por fecha_cierre de materia para agregarlo a cadena
+        $Almacenando.= $_POST['fecha_cierre_I'].";<br>";
+    }
+    if( (isset($_POST['fecha_apertura_F'])) && ($_POST['fecha_apertura_F']!=null) && $_POST['fecha_apertura_F'] !="" ){
+        //busqueda por fecha_apertura para agregarlo a cadena
+        $Almacenando.= $_POST['fecha_apertura_F'].";<br>";
+    }
+    if( (isset($_POST['fecha_cierre_F'])) && ($_POST['fecha_cierre_F']!=null) && $_POST['fecha_cierre_F'] !="" ){
+        //busqueda por fecha_cierre de materia para agregarlo a cadena
+        $Almacenando.= $_POST['fecha_cierre_F'].";<br>";
+    }
+    if( (isset($_POST['orden'])) && ($_POST['orden']!=null) && $_POST['orden'] !="" ){
+        //busqueda por fecha_apertura para agregarlo a cadena
+        $Almacenando.= $_POST['orden'].";<br>";
+    }
+    if( (isset($_POST['ord'])) && ($_POST['ord']!=null) && $_POST['ord'] !="" ){
+        //busqueda por fecha_cierre de materia para agregarlo a cadena
+        $Almacenando.= $_POST['ord'].";<br>";
+    }
+    if ($Almacenando!= ""){
+        echo "POST= ".$Almacenando;
+    }
+}else{
+    
+
+    $inicio = ($pagina>0) ? (($pagina * $registros)-$registros) : 0;
 	$tabla="";
 
 	if(isset($busqueda) && $busqueda!=""){
@@ -14,6 +57,7 @@
         
         //Lo saco porque no tengo SESSION['id']
 		$consulta_datos="SELECT * FROM vacante ORDER BY vacante_id ASC LIMIT $inicio,$registros";
+        //TODO filtrar las vacantes si fecha_cierre es null
         $consulta_materia="SELECT materia_nombre FROM materia ORDER BY materia_id";
 		$consulta_total="SELECT COUNT(vacante_id) FROM vacante";
 		
@@ -63,7 +107,12 @@
                         <a href="index.php?vista=vacante_detallada&vacante_id='.$rows['vacante_id'].'" class="button is-success is-rounded is-small">Más detalles</a>
                     </td>
                 </tr>
-            ';//TODO Terminar vista detallada q solo muestra los datos de una determinada vacante
+            ';
+                //TODO Terminar vista detallada q solo muestra los datos de una determinada vacante
+                //TODO Terminar las vistas limitatda por permiso para "listar_vacantes_abiertas.php"
+                //TODO Terminar las vistas limitatda por permiso agrergar boton postularse si es POSTULANTE de lo contrario el boton se esconde
+                //TODO Maquetar formulario listar_vacantes.php
+                //TODO Crear funcion q dado un vacante_id devuelve si esta está abierta o cerrada
             $contador++;
 		}
 		$pag_final=$contador-1;
@@ -102,3 +151,4 @@
 	if($total>=1 && $pagina<=$Npaginas){
 		echo paginador_tablas($pagina,$Npaginas,$url,7);
 	}
+}

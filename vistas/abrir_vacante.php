@@ -6,18 +6,18 @@
 
 <?php 
     require "./php/guard.php";
-    if($rol=='Invitado'){
-        echo '<article class="message is-warning mt-6">
-                <div class="message-header">
-                    <p>Error de alcance</p>
-                </div>
-                <div class="message-body">
-                    No posees los permisos necesarios para abrir una vacante. En caso de no ser correcto contáctate con nuestro soporte.
-                </div>
-            </article>
-            ';
-        exit();
-    }
+    // if($rol=='Invitado'){
+    //     echo '<article class="message is-warning mt-6">
+    //             <div class="message-header">
+    //                 <p>Error de alcance</p>
+    //             </div>
+    //             <div class="message-body">
+    //                 No posees los permisos necesarios para abrir una vacante. En caso de no ser correcto contáctate con nuestro soporte.
+    //             </div>
+    //         </article>
+    //         ';
+    //     exit();
+    // }
 ?>
 
 <div class="container pb-6">

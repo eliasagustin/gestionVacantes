@@ -11,7 +11,6 @@
         <span aria-hidden="true"></span>
         </a>
     </div>
-        <!-- TODO cambiar links del menu -->
     
     <div id="navbarBasicExample" class="navbar-menu">
         <div class="navbar-start">

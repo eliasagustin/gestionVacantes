@@ -45,7 +45,6 @@
 
     	if($check_user['usuario_usuario']==$usuario && password_verify($clave, $check_user['usuario_clave'])){
 
-            //TODO Verificar si trae problemas agregar el rol_id en la session
     		$_SESSION['id']=$check_user['usuario_id'];
     		$_SESSION['nombre']=$check_user['usuario_nombre'];
     		$_SESSION['apellido']=$check_user['usuario_apellido'];
