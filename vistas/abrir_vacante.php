@@ -4,6 +4,22 @@
     <h2 class="subtitle">Formulario de creación</h2>
 </div>
 
+<?php 
+    require "./php/guard.php";
+    if($rol=='Invitado'){
+        echo '<article class="message is-warning mt-6">
+                <div class="message-header">
+                    <p>Error de alcance</p>
+                </div>
+                <div class="message-body">
+                    No posees los permisos necesarios para abrir una vacante. En caso de no ser correcto contáctate con nuestro soporte.
+                </div>
+            </article>
+            ';
+        exit();
+    }
+?>
+
 <div class="container pb-6">
 	<?php
 		require_once "./php/main.php";
@@ -21,7 +37,7 @@
                 <div class="field is-narrow">
                     <div class="control">
                         <div class="select is-fullwidth">
-                        <select name="vacante_materia" >
+                        <select name="vacante_materia" required>
                         <option value="" selected="" >Seleccione una materia</option>
                             <?php
                                 $materias=conexion();
@@ -29,7 +45,7 @@
                                 if($materias->rowCount()>0){
                                     $materias=$materias->fetchAll();
                                     foreach($materias as $row){
-                                        echo '<option value="'.$row['materia_id'].'" >'.$row['materia_nombre'].'</option>';
+                                        echo '<option value="'.$row['materia_nombre'].'" >'.$row['materia_nombre'].'</option>';
                                     }
                                 }
                                 $materias=null;
@@ -50,7 +66,7 @@
                 <div class="field is-narrow">
                     <div class="control">
                         <div class="is-fullwidth">
-                            <input class="input" type="date" name="fecha_apertura" min="<?php echo date("Y-m-d");?>" value="<?php echo date("Y-m-d");?>">
+                            <input class="input" type="date" name="fecha_apertura" min="<?php echo date("Y-m-d");?>" value="<?php echo date("Y-m-d");?>" required>
                         </div>
                     </div>
                 </div>
@@ -65,7 +81,7 @@
                 <div class="field is-narrow">
                     <div class="control">
                         <div class="is-fullwidth">
-                            <input class="input" type="date" name="fecha_cierre" min="<?php echo date("Y-m-d",strtotime("tomorrow"));?>" value="<?php echo date("Y-m-d",strtotime("tomorrow"));?>">
+                            <input class="input" type="date" name="fecha_cierre" min="<?php echo date("Y-m-d",strtotime("tomorrow"));?>" value="<?php echo date("Y-m-d",strtotime("tomorrow"));?>" required>
                         </div>
                     </div>
                 </div>
@@ -80,7 +96,7 @@
                 <div class="field is-narrow">
                     <div class="control">
                         <div class="select is-fullwidth">
-                        <select name="vacante_puesto" >
+                        <select name="vacante_puesto" required>
                         <option value="" selected="" >Seleccione puesto a cubrir</option>
                             <option>Ayudante de Cátedra</option>
                             <option>Profesor Adjunto</option>
@@ -100,7 +116,7 @@
             <div class="field-body">
                 <div class="field">
                     <div class="control">
-                        <textarea class="textarea"  name="vacante_descripcion" placeholder="Desarrolla brevemente la drescripccion e incumbencias del puesto"></textarea>
+                        <textarea class="textarea" minlength="10" maxlength="200" name="vacante_descripcion" placeholder="Desarrolla brevemente la drescripccion e incumbencias del puesto" required></textarea>
                     </div>
                 </div>
             </div>

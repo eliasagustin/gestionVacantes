@@ -10,133 +10,119 @@
 	$puesto=limpiar_cadena($_POST['vacante_puesto']);
 	$descripcion=limpiar_cadena($_POST['vacante_descripcion']);
 
-
-    echo 'materia= '.$materia.';<br>
-    fecha_apertura= '.$fecha_apertura.';<br>
-    fecha_cierre= '.$fecha_cierre.';<br>
-    puesto= '.$puesto.';<br>
-    descripcion= '.$descripcion.';<br>';
-    exit();
-
 	/*== Verificando campos obligatorios ==*/
-    if($codigo=="" || $nombre=="" || $precio=="" || $stock=="" || $categoria==""){
+    if($materia=="" || $fecha_apertura=="" || $fecha_cierre=="" || $puesto=="" || $descripcion==""){
         echo '
             <div class="notification is-danger is-light">
                 <strong>¡Ocurrio un error inesperado!</strong><br>
-                No has llenado todos los campos que son obligatorios
+                Se han encontrados campos obligatorios sin completar.
             </div>
         ';
         exit();
     }
 
+    if (strtotime($fecha_cierre)<=strtotime($fecha_apertura)){
+        echo'
+            <div class="notification is-danger is-light">
+                <strong>¡Ocurrio un error inesperado!</strong><br>
+                La fecha de cierre debe ser mayor que la fecha de apertura.
+            </div>
+        ';
+        exit();
+    }
 
     /*== Verificando integridad de los datos ==*/
-    if(verificar_datos("[a-zA-Z0-9- ]{1,70}",$codigo)){
+   if(verificar_datos("[a-zA-Z0-9áéíóúÁÉÍÓÚñÑ().,$#\-\/ ]{3,70}",$materia)){
         echo '
             <div class="notification is-danger is-light">
                 <strong>¡Ocurrio un error inesperado!</strong><br>
-                El CODIGO de BARRAS no coincide con el formato solicitado
+                El formato del campo Materia no coincide con el formato solicitado.
             </div>
         ';
         exit();
     }
 
-    if(verificar_datos("[a-zA-Z0-9áéíóúÁÉÍÓÚñÑ().,$#\-\/ ]{1,70}",$nombre)){
+    if(verificar_datos("[0-9\-]{10,10}",$fecha_apertura)){
         echo '
             <div class="notification is-danger is-light">
                 <strong>¡Ocurrio un error inesperado!</strong><br>
-                El NOMBRE no coincide con el formato solicitado
+                La fecha de apertura no coincide con el formato solicitado.
+            </div>
+        ';
+        exit();
+    }
+    if(verificar_datos("[0-9\-]{10,10}",$fecha_cierre)){
+        echo '
+            <div class="notification is-danger is-light">
+                <strong>¡Ocurrio un error inesperado!</strong><br>
+                La fecha de cierre no coincide con el formato solicitado.
             </div>
         ';
         exit();
     }
 
-    if(verificar_datos("[0-9.]{1,25}",$precio)){
+    if(verificar_datos("[a-zA-Z0-9áéíóúÁÉÍÓÚñÑ().,$#\-\/ ]{1,70}",$puesto)){
         echo '
             <div class="notification is-danger is-light">
                 <strong>¡Ocurrio un error inesperado!</strong><br>
-                El PRECIO no coincide con el formato solicitado
+                El campo nombre del puesto no coincide con el formato solicitado.
             </div>
         ';
         exit();
     }
 
-    if(verificar_datos("[0-9]{1,25}",$stock)){
+    if(verificar_datos("[a-zA-Z0-9áéíóúÁÉÍÓÚñÑ().,$&^#\-\/%@ ]{10,200}",$descripcion)){
         echo '
             <div class="notification is-danger is-light">
                 <strong>¡Ocurrio un error inesperado!</strong><br>
-                El STOCK no coincide con el formato solicitado
+                La descripción del puesto no coincide con el formato solicitado, es menor que 10 o supera el limite de 200.
             </div>
         ';
         exit();
     }
 
 
-    /*== Verificando codigo ==*/
-    $check_codigo=conexion();
-    $check_codigo=$check_codigo->query("SELECT producto_codigo FROM producto WHERE producto_codigo='$codigo'");
-    if($check_codigo->rowCount()>0){
+    /*== Verificando materia ==*/
+    $check_materia=conexion();
+    $check_materia=$check_materia->query("SELECT materia_id FROM materia WHERE materia_nombre like '$materia'");
+    if($check_materia->rowCount()==0){
         echo '
             <div class="notification is-danger is-light">
                 <strong>¡Ocurrio un error inesperado!</strong><br>
-                El CODIGO de BARRAS ingresado ya se encuentra registrado, por favor elija otro
+                La materia ingresada no existe en nuestra BD, por favor elija otra.
             </div>
         ';
         exit();
+    }else{
+        $check_materia=$check_materia->fetch();
     }
-    $check_codigo=null;
 
-
-    /*== Verificando nombre ==*/
-    $check_nombre=conexion();
-    $check_nombre=$check_nombre->query("SELECT producto_nombre FROM producto WHERE producto_nombre='$nombre'");
-    if($check_nombre->rowCount()>0){
+    /*== Verificando Nombre del puesto ==*/
+    if(!in_array($puesto, ["Ayudante de Cátedra","Profesor Adjunto","Profesor Titular","No Docente"])){
         echo '
             <div class="notification is-danger is-light">
                 <strong>¡Ocurrio un error inesperado!</strong><br>
-                El NOMBRE ingresado ya se encuentra registrado, por favor elija otro
+                El puesto propuesto no existe, por favor elija otro.
             </div>
         ';
         exit();
-    }
-    $check_nombre=null;
-
-
-    /*== Verificando categoria ==*/
-    $check_categoria=conexion();
-    $check_categoria=$check_categoria->query("SELECT categoria_id FROM categoria WHERE categoria_id='$categoria'");
-    if($check_categoria->rowCount()<=0){
-        echo '
-            <div class="notification is-danger is-light">
-                <strong>¡Ocurrio un error inesperado!</strong><br>
-                La categoría seleccionada no existe
-            </div>
-        ';
-        exit();
-    }
-    $check_categoria=null;
-
-    /* Directorios de imagenes */
-	$img_dir='../img/producto/';
-
+    };
 
 	/*== Guardando datos ==*/
-    $guardar_producto=conexion();
-    $guardar_producto=$guardar_producto->prepare("INSERT INTO producto(producto_codigo,producto_nombre,producto_precio,producto_stock,producto_foto,categoria_id,usuario_id) VALUES(:codigo,:nombre,:precio,:stock,:foto,:categoria,:usuario)");
+    $guardar_vacante=conexion();
+    $guardar_vacante=$guardar_vacante->prepare("INSERT INTO vacante(vacante_nombre_puesto,vacante_descripcion_puesto,vacante_fecha_apertura,vacante_fecha_cierre_estipulada,materia_id) VALUES(:vac_nom_puesto,:vac_desc_puesto,:vac_fec_apertura,:vac_fec_cierre_est,:materia)");
 
     $marcadores=[
-        ":codigo"=>$codigo,
-        ":nombre"=>$nombre,
-        ":precio"=>$precio,
-        ":stock"=>$stock,
-        ":foto"=>$foto,
-        ":categoria"=>$categoria,
-        ":usuario"=>$_SESSION['id']
+        ":vac_nom_puesto"=>$puesto,
+        ":vac_desc_puesto"=>$descripcion,
+        ":vac_fec_apertura"=>$fecha_apertura,
+        ":vac_fec_cierre_est"=>$fecha_cierre,
+        ":materia"=>$check_materia['materia_id']
     ];
 
-    $guardar_producto->execute($marcadores);
+    $guardar_vacante->execute($marcadores);
 
-    if($guardar_producto->rowCount()==1){
+    if($guardar_vacante->rowCount()==1){
         echo '
             <div class="notification is-info is-light">
                 <strong>Registro exitoso!</strong><br>
@@ -144,12 +130,6 @@
             </div>
         ';
     }else{
-
-    	if(is_file($img_dir.$foto)){
-			chmod($img_dir.$foto, 0777);
-			unlink($img_dir.$foto);
-        }
-
         echo '
             <div class="notification is-danger is-light">
                 <strong>¡Ocurrio un error inesperado!</strong><br>
@@ -157,4 +137,4 @@
             </div>
         ';
     }
-    $guardar_producto=null;
+    $guardar_vacante=null;

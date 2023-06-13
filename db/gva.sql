@@ -6,8 +6,7 @@ CREATE TABLE `vacante` (
   `vacante_fecha_cierre_estipulada` date NOT NULL,
   `vacante_fecha_cierre` date NOT NULL,
   `vacante_fecha_orden_merito` date NOT NULL,
-  `materia_id` int(7) NOT NULL,
-  `usuario_id` int(10) NOT NULL
+  `materia_id` int(7) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
 
 CREATE TABLE `materia` (
