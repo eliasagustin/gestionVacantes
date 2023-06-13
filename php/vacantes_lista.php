@@ -3,20 +3,26 @@
 	$tabla="";
 
 	if(isset($busqueda) && $busqueda!=""){
+        echo 'Deberia empezar la busqueda porque encontró que el campo busqueda es igual a "'.$busqueda.'"'; 
 
+        /* no se usa
 		$consulta_datos="SELECT * FROM usuario WHERE ((usuario_id!='".$_SESSION['id']."') AND (usuario_nombre LIKE '%$busqueda%' OR usuario_apellido LIKE '%$busqueda%' OR usuario_usuario LIKE '%$busqueda%' OR usuario_email LIKE '%$busqueda%')) ORDER BY usuario_nombre ASC LIMIT $inicio,$registros";
 
 		$consulta_total="SELECT COUNT(usuario_id) FROM usuario WHERE ((usuario_id!='".$_SESSION['id']."') AND (usuario_nombre LIKE '%$busqueda%' OR usuario_apellido LIKE '%$busqueda%' OR usuario_usuario LIKE '%$busqueda%' OR usuario_email LIKE '%$busqueda%'))";
-
+        */
 	}else{
-
-		$consulta_datos="SELECT * FROM usuario WHERE usuario_id!='".$_SESSION['id']."' ORDER BY usuario_nombre ASC LIMIT $inicio,$registros";
-
-		$consulta_total="SELECT COUNT(usuario_id) FROM usuario WHERE usuario_id!='".$_SESSION['id']."'";
+        
+        //Lo saco porque no tengo SESSION['id']
+		$consulta_datos="SELECT * FROM vacante ORDER BY vacante_id ASC LIMIT $inicio,$registros";
+        $consulta_materia="SELECT materia_nombre FROM materia ORDER BY materia_id";
+		$consulta_total="SELECT COUNT(vacante_id) FROM vacante";
 		
 	}
 
 	$conexion=conexion();
+
+    $materia_nombre= $conexion->query($consulta_materia);
+    $materia_nombre = $materia_nombre->fetchAll();
 
 	$datos = $conexion->query($consulta_datos);
 	$datos = $datos->fetchAll();
@@ -32,11 +38,11 @@
             <thead>
                 <tr class="has-text-centered">
                 	<th>#</th>
-                    <th>Nombres</th>
-                    <th>Apellidos</th>
-                    <th>Usuario</th>
-                    <th>Email</th>
-                    <th colspan="2">Opciones</th>
+                    <th>Materia</th>
+                    <th>Puesto</th>
+                    <th>Fecha Apertura</th>
+                    <th>Fecha Cierre Estipulada</th>
+                    <th colspan="2"></th>
                 </tr>
             </thead>
             <tbody>
@@ -49,18 +55,15 @@
 			$tabla.='
 				<tr class="has-text-centered" >
 					<td>'.$contador.'</td>
-                    <td>'.$rows['usuario_nombre'].'</td>
-                    <td>'.$rows['usuario_apellido'].'</td>
-                    <td>'.$rows['usuario_usuario'].'</td>
-                    <td>'.$rows['usuario_email'].'</td>
+                    <td>'.$materia_nombre[$rows['materia_id']-1]['materia_nombre'].'</td>
+                    <td>'.$rows['vacante_nombre_puesto'].'</td>
+                    <td>'.$rows['vacante_fecha_apertura'].'</td>
+                    <td>'.$rows['vacante_fecha_cierre_estipulada'].'</td>
                     <td>
-                        <a href="index.php?vista=user_update&user_id_up='.$rows['usuario_id'].'" class="button is-success is-rounded is-small">Actualizar</a>
-                    </td>
-                    <td>
-                        <a href="'.$url.$pagina.'&user_id_del='.$rows['usuario_id'].'" class="button is-danger is-rounded is-small">Eliminar</a>
+                        <a href="index.php?vista=vacante_detallada&vacante_id='.$rows['vacante_id'].'" class="button is-success is-rounded is-small">Más detalles</a>
                     </td>
                 </tr>
-            ';
+            ';//TODO Terminar vista detallada q solo muestra los datos de una determinada vacante
             $contador++;
 		}
 		$pag_final=$contador-1;

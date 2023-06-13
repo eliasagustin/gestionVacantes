@@ -25,7 +25,7 @@
 
         $pagina=limpiar_cadena($pagina);  //por las dudas de vunerabilidad la limpio
         $url="index.php?vista=listar_vacantes_abiertas&page=";
-        $registros=15; //        <==== Seteo la cantidad de registros por pag, que se van a mostrar
+        $registros=10; //        <==== Seteo la cantidad de registros por pag, que se van a mostrar
         $busqueda="";
 
         # Paginador usuario #
