@@ -90,11 +90,12 @@ require_once "main.php";
         <table class="table is-bordered is-striped is-narrow is-hoverable is-fullwidth">
             <thead>
                 <tr class="has-text-centered">
-                	<th>#</th>
+                    <th>Estado</th>
                     <th>Materia</th>
-                    <th>Puesto</th>
                     <th>Apertura</th>
                     <th>Cierre Estipulado</th>
+                    <th>Puesto</th>
+                    <th>Postulaciones</th>
                     <th colspan="2"></th>
                 </tr>
             </thead>
@@ -104,15 +105,25 @@ require_once "main.php";
 	if($total>=1){
 		$contador=1;
 		foreach($datos as $rows){
+            $aux = "";
+            if($rows['vacante_fecha_cierre'] == '0000-00-00'){
+                $aux =  "Abierta";
+                $aux2 =  "href='index.php?vista=vacante_id_cerrar&vacante_id='".$rows['vacante_id']."";
+                
+            }else{
+                $aux =  "Cerrada";
+                $aux2 =  "href='#' disabled";
+            }
 			$tabla.='
 				<tr class="has-text-centered" >
-					<td>'.$rows['vacante_id'].'</td>
+					<td>'.$aux.'</td>
                     <td>'.$materia_nombre[$rows['materia_id']-1]['materia_nombre'].'</td>
-                    <td>'.$rows['vacante_nombre_puesto'].'</td>
                     <td>'.$rows['vacante_fecha_apertura'].'</td>
                     <td>'.$rows['vacante_fecha_cierre_estipulada'].'</td>
+                    <td>'.$rows['vacante_nombre_puesto'].'</td>
+                    <td>'.$rows['vacante_id'].'</td>
                     <td>
-                        <a href="index.php?vista=vacante_id_cerrar&vacante_id='.$rows['vacante_id'].'" class="button is-danger is-rounded is-small">Cerrar</a>
+                        <a '.$aux2.' class="button disable is-danger is-rounded is-small">Cerrar</a>
                     </td>
                     <td>
                         <a href="index.php?vista=vacante_detallada&vacante_id='.$rows['vacante_id'].'" class="button is-success is-rounded is-small">Detalles</a>
@@ -120,10 +131,8 @@ require_once "main.php";
                 </tr>
             ';
                 //TODO Terminar vista detallada q solo muestra los datos de una determinada vacante
-                //TODO Terminar las vistas limitatda por permiso para "listar_vacantes_abiertas.php"
-                //TODO Terminar las vistas limitatda por permiso agrergar boton postularse si es POSTULANTE de lo contrario el boton se esconde
-                //TODO Maquetar formulario listar_vacantes.php
-                //TODO Crear funcion q dado un vacante_id devuelve si esta está abierta o cerrada
+                //TODO Terminar las vistas limitada por permiso para "listar_vacantes_abiertas.php"
+                //TODO Terminar las vistas limitada por permiso agrergar boton postularse si es POSTULANTE de lo contrario el boton se esconde
             $contador++;
 		}
 		$pag_final=$contador-1;
