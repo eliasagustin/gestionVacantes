@@ -3,9 +3,9 @@ const formularios_ajax=document.querySelectorAll(".FormularioAjax");
 function enviar_formulario_ajax(e){
     e.preventDefault();
 
-    let enviar=confirm("Quieres enviar el formulario");
+    // let enviar=confirm("Quieres enviar el formulario");
 
-    if(enviar==true){
+    // if(enviar==true){
 
         let data= new FormData(this);
         let method=this.getAttribute("method");
@@ -27,7 +27,7 @@ function enviar_formulario_ajax(e){
             let contenedor=document.querySelector(".form-rest");
             contenedor.innerHTML = respuesta;
         });
-    }
+    // }
 
 }
 

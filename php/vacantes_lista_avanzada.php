@@ -60,7 +60,7 @@ require_once "main.php";
         $receta.= " ".$_POST['ord'];
     }
     if ($receta!= ""){
-        echo "Consulta= ".$receta;
+        //echo "Consulta= ".$receta;
     } else {
         $receta ="ORDER BY vacante_id ASC";
     }

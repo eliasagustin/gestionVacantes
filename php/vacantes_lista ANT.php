@@ -125,12 +125,7 @@ if(isset($_POST['estado'])){
                     </td>
                 </tr>
             ';
-                //TODO Terminar vista detallada q solo muestra los datos de una determinada vacante
-                //TODO Terminar las vistas limitatda por permiso para "listar_vacantes_abiertas.php"
-                //TODO Terminar las vistas limitatda por permiso agrergar boton postularse si es POSTULANTE de lo contrario el boton se esconde
-                //TODO Maquetar formulario listar_vacantes.php
-                //TODO Crear funcion q dado un vacante_id devuelve si esta está abierta o cerrada
-            $contador++;
+               $contador++;
 		}
 		$pag_final=$contador-1;
 	}else{
