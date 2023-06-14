@@ -17,40 +17,7 @@
             <div class="navbar-item">
                 <h1 class="title">Gestión de Vacantes</h1>
             </div>
-            <!--
-            <div class="navbar-item has-dropdown is-hoverable">
-                <a class="navbar-link">Usuarios</a>                      
-
-                <div class="navbar-dropdown">
-                    <a href="index.php?vista=user_new" class="navbar-item">Nuevo</a>
-                    <a href="index.php?vista=user_list" class="navbar-item">Lista</a>
-                    <a href="index.php?vista=user_search" class="navbar-item">Buscar</a>
-                </div>
-            </div>
-
-            <div class="navbar-item has-dropdown is-hoverable">
-                <a class="navbar-link">Categorías</a>   
-
-                <div class="navbar-dropdown">
-                    <a href="index.php?vista=category_new" class="navbar-item">Nueva</a>    
-                    <a href="index.php?vista=category_list" class="navbar-item">Lista</a>    
-                    <a href="index.php?vista=category_search" class="navbar-item">Buscar</a>    
-                </div>
-            </div>
-
-            <div class="navbar-item has-dropdown is-hoverable">
-                <a class="navbar-link">Productos</a>
-
-                <div class="navbar-dropdown">
-                    <a href="index.php?vista=product_new" class="navbar-item">Nuevo</a>   
-                    <a href="index.php?vista=product_list" class="navbar-item">Lista</a>    
-                    <a href="index.php?vista=product_category" class="navbar-item">Por categoría</a>  
-                    <a href="index.php?vista=product_search" class="navbar-item">Buscar</a>    
-                </div>
-            </div>
-            -->
         </div>
-
         <div class="navbar-end">
             <div class="navbar-item">Actualmente estás designado con rol de "
             
