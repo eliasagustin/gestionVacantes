@@ -33,6 +33,9 @@ include "./php/breadcum.php";?>
     
 ?>
 <form action="./php/vacantes_lista.php" method="POST" class="FormularioAjax" enctype="multipart/form-data" >
+    <input type="hidden" value="<?php echo $pagina?>" name="pagina">
+    <input type="hidden" value="<?php echo $url?>" name="url">
+    <input type="hidden" value="<?php echo $registros?>" name="registros">
     <div class="columns pt-4">
         <div class="column">
             <div class="field is-horizontal">
@@ -70,7 +73,7 @@ include "./php/breadcum.php";?>
                                     if($materias->rowCount()>0){
                                         $materias=$materias->fetchAll();
                                         foreach($materias as $row){
-                                            echo '<option value="'.$row['materia_id'].'" >'.$row['materia_nombre'].'</option>';
+                                            echo '<option value="'.$row['materia_nombre'].'" >'.$row['materia_nombre'].'</option>';
                                         }
                                     }
                                     $materias=null;
@@ -91,7 +94,7 @@ include "./php/breadcum.php";?>
                     <div class="field is-narrow">
                         <div class="control">
                             <div class="is-fullwidth">
-                                <input class="input" type="date" name="fecha_apertura_I" value="">
+                                <input class="input" type="date" name="fecha_apertura_I" value="<?php echo date("Y-m-d");?>" required>
                             </div>
                         </div>
                     </div>
@@ -106,7 +109,7 @@ include "./php/breadcum.php";?>
                     <div class="field is-narrow">
                         <div class="control">
                             <div class="is-fullwidth">
-                                <input class="input" type="date" name="fecha_cierre_I" value="">
+                                <input class="input" type="date" name="fecha_cierre_I" value="<?php echo date("Y-m-d");?>" required>
                             </div>
                         </div>
                     </div>
@@ -124,7 +127,7 @@ include "./php/breadcum.php";?>
                     <div class="field is-narrow">
                         <div class="control">
                             <div class="is-fullwidth">
-                                <input class="input" type="date" name="fecha_apertura_F" value="">
+                                <input class="input" type="date" name="fecha_apertura_F" value="<?php echo date("Y-m-d");?>" required>
                             </div>
                         </div>
                     </div>
@@ -138,7 +141,7 @@ include "./php/breadcum.php";?>
                     <div class="field is-narrow">
                         <div class="control">
                             <div class="is-fullwidth">
-                                <input class="input" type="date" name="fecha_cierre_F" value="">
+                                <input class="input" type="date" name="fecha_cierre_F" value="<?php echo date("Y-m-d");?>" required>
                             </div>
                         </div>
                     </div>
@@ -179,7 +182,8 @@ include "./php/breadcum.php";?>
                         <div class="control">
                             <div class="select is-fullwidth">
                                 <select name="orden" required>
-                                    <option value="vacante_id" selected>Vacante id</option>
+                                    <option value="" selected="" ></option>
+                                    <option value="vacante_id">Vacante id</option>
                                     <option value="vacante_nombre_puesto">Puesto</option>
                                     <option value="vacante_fecha_apertura">Fecha Apertura</option>
                                     <option value="vacante_fecha_cierre_estipulada">F. Cierre Estipulado</option>
@@ -212,7 +216,7 @@ include "./php/breadcum.php";?>
         </div>
     </div>
     <p class="has-text-right mb-6">
-        <button type="submit" class="button is-info is-rounded">Buscar</button>&nbsp;&nbsp;
+        <button type="submit" class="button is-info is-rounded">Guardar</button>&nbsp;&nbsp;
     </p>
 </form>
     <div class="form-rest">
