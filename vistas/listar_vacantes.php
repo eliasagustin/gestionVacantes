@@ -32,7 +32,7 @@ include "./php/breadcum.php";?>
     # Paginador usuario #
     
 ?>
-<form action="./php/vacantes_lista.php" method="POST" class="FormularioAjax" enctype="multipart/form-data" >
+<form action="./php/vacantes_lista_avanzada.php" method="POST" class="FormularioAjax" enctype="multipart/form-data" >
     <div class="columns pt-4">
         <div class="column">
             <div class="field is-horizontal">
@@ -148,26 +148,6 @@ include "./php/breadcum.php";?>
 
     <?php
 
-            // $vacantes=conexion();
-            // $vacantes=$vacantes->query("SELECT * FROM vacante");
-            // $vacantes=$vacantes->fetchAll();
-            // $vacantes=array_keys($vacantes[0]);
-            // //$numColumns = count($vacantes);
-            // foreach ($vacantes as $regist){
-            //     echo $regist.'<br >';
-            // }
-            // //array_keys($vacantes);
-            // for($colAux=0; $colAux<=$numColumns; $colAux++){
-            
-            // }
-                
-            // $vacantes=null;
-
-            // 
-            // $numColumns = count($records[0]);
-            // $numRows = count($records);
-            // $columnsNames = array_keys($records[0]);
-
         ?>
         <div class="column">
             <div class="field is-horizontal">
@@ -211,12 +191,12 @@ include "./php/breadcum.php";?>
             </div>
         </div>
     </div>
-    <p class="has-text-right mb-6">
-        <button type="submit" class="button is-info is-rounded">Buscar</button>&nbsp;&nbsp;
+    <p class="has-text-right mb-5">
+        <button type="submit" class="button is-info is-rounded">Filtrar</button>&nbsp;&nbsp;
     </p>
 </form>
     <div class="form-rest">
     
-        <?php require_once "./php/vacantes_lista.php";?>
+        <?php require_once "./php/vacantes_lista_avanzada.php";?>
     </div>
 </div>

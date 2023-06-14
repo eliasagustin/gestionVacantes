@@ -2,64 +2,65 @@
 
 <?php
 require_once "main.php";
-    	/*== Almacenando datos ==*/
+    	/*== receta datos ==*/
 if(isset($_POST['estado'])){
-    $Almacenando = "";
+    $receta = "";
     if( (isset($_POST['estado'])) && ($_POST['estado']!=null) && $_POST['estado'] !="" ){
         //busqueda por estado para agregarlo a cadena
         if ($_POST['estado']=="Abierta"){
-            $Almacenando.= " vacante_fecha_cierre = '0000-00-00' AND";
+            $receta.= " vacante_fecha_cierre = '0000-00-00' AND";
         }
         if ($_POST['estado']=="Cerrada"){
-            $Almacenando.= " vacante_fecha_cierre != '0000-00-00' AND";
+            $receta.= " vacante_fecha_cierre != '0000-00-00' AND";
         }
     }
     if( (isset($_POST['vacante_materia'])) && ($_POST['vacante_materia']!=null) && $_POST['vacante_materia'] !="" ){
         //busqueda por id de materia para agregarlo a cadena
-        $Almacenando.= " materia_id = '".$_POST['vacante_materia']."' AND";
+        $receta.= " materia_id = '".$_POST['vacante_materia']."' AND";
     }
     if( (isset($_POST['fecha_apertura_I'])) && ($_POST['fecha_apertura_I']!=null) && $_POST['fecha_apertura_I'] !="" ){
         //busqueda por fecha_apertura para agregarlo a cadena
-        //$Almacenando.= $_POST['fecha_apertura_I'].";<br>";
-        $Almacenando.= " vacante_fecha_apertura >= '".$_POST['fecha_apertura_I']."' AND";
+        //$receta.= $_POST['fecha_apertura_I'].";<br>";
+        $receta.= " vacante_fecha_apertura >= '".$_POST['fecha_apertura_I']."' AND";
     }
     if( (isset($_POST['fecha_cierre_I'])) && ($_POST['fecha_cierre_I']!=null) && $_POST['fecha_cierre_I'] !="" ){
         //busqueda por fecha_cierre de materia para agregarlo a cadena
-        // $Almacenando.= $_POST['fecha_cierre_I'].";<br>";
-        $Almacenando.= " vacante_fecha_cierre_estipulada >= '".$_POST['fecha_cierre_I']."' AND";
+        // $receta.= $_POST['fecha_cierre_I'].";<br>";
+        $receta.= " vacante_fecha_cierre_estipulada >= '".$_POST['fecha_cierre_I']."' AND";
     }
     if( (isset($_POST['fecha_apertura_F'])) && ($_POST['fecha_apertura_F']!=null) && $_POST['fecha_apertura_F'] !="" ){
         //busqueda por fecha_apertura para agregarlo a cadena
-        // $Almacenando.= $_POST['fecha_apertura_F'].";<br>";
-        $Almacenando.= " vacante_fecha_apertura =< '".$_POST['fecha_apertura_F']."' AND";
+        // $receta.= $_POST['fecha_apertura_F'].";<br>";
+        $receta.= " vacante_fecha_apertura =< '".$_POST['fecha_apertura_F']."' AND";
     }
     if( (isset($_POST['fecha_cierre_F'])) && ($_POST['fecha_cierre_F']!=null) && $_POST['fecha_cierre_F'] !="" ){
         //busqueda por fecha_cierre de materia para agregarlo a cadena
-        // $Almacenando.= $_POST['fecha_cierre_F'].";<br>";
-        $Almacenando.= " vacante_fecha_cierre_estipulada =< '".$_POST['fecha_cierre_F']."' AND";
+        // $receta.= $_POST['fecha_cierre_F'].";<br>";
+        $receta.= " vacante_fecha_cierre_estipulada =< '".$_POST['fecha_cierre_F']."' AND";
     }
-    if ($Almacenando!= ""){
-        $Almacenando = "WHERE ".$Almacenando;
+    if ($receta!= ""){
+        $receta = "WHERE ".$receta;
     }
-    if(substr($Almacenando, strlen($Almacenando)-3, 3 ) == "AND"){
-        $Almacenando = substr($Almacenando, 0, strlen($Almacenando)-4 );
+    if(substr($receta, strlen($receta)-3, 3 ) == "AND"){
+        $receta = substr($receta, 0, strlen($receta)-4 );
     }
     if( (isset($_POST['orden'])) && ($_POST['orden']!=null) && $_POST['orden'] !="" ){
         //busqueda por fecha_apertura para agregarlo a cadena
-        $Almacenando.= " ORDER BY ".$_POST['orden'];
+        $receta.= " ORDER BY ".$_POST['orden'];
     }
     if( (isset($_POST['ord'])) && ($_POST['ord']!=null) && $_POST['ord'] !="" ){
         //busqueda por fecha_cierre de materia para agregarlo a cadena
-        $Almacenando.= " ".$_POST['ord'];
+        $receta.= " ".$_POST['ord'];
     }
-    if ($Almacenando!= ""){
-        echo "Consulta= ".$Almacenando;
-    }
+    // if ($receta!= ""){
+    //     echo "Consulta= ".$receta;
+    // }
      //echo date("Y-m-d");
     $tabla="";
         //Lo saco porque no tengo SESSION['id']
         
-		$consulta_datos="SELECT * FROM vacante WHERE vacante_fecha_apertura >= '2023-06-12' ORDER BY vacante_id ASC";
+		$consulta_datos="SELECT * FROM vacante ".$receta;
+		// $consulta_datos="SELECT * FROM vacante WHERE vacante_fecha_apertura >= '2023-06-12' ORDER BY vacante_id ASC";
         //TODO filtrar las vacantes si fecha_cierre es null
         $consulta_materia="SELECT materia_nombre FROM materia ORDER BY materia_id";
 		$consulta_total="SELECT COUNT(vacante_id) FROM vacante";
@@ -98,7 +99,7 @@ if(isset($_POST['estado'])){
 		foreach($datos as $rows){
 			$tabla.='
 				<tr class="has-text-centered" >
-					<td>'.$contador.'</td>
+					<td>'.$rows['vacante_id'].'</td>
                     <td>'.$materia_nombre[$rows['materia_id']-1]['materia_nombre'].'</td>
                     <td>'.$rows['vacante_nombre_puesto'].'</td>
                     <td>'.$rows['vacante_fecha_apertura'].'</td>
