@@ -23,20 +23,6 @@
 
 <br>
 
-<article class="message is-info">
-  <div class="message-header">
-    <p>Crear las vistas faltantes, (las otras vistas están fuera de alcance)</p>
-  </div>
-  <div class="message-body">
-  	<ul>
-		<li>"Inicio" Agregar vision "Jefe de Catedra" "Postulante" "Responsable Administrativo"</li>
-		<li>"Vacantes"  Agregar vision "Jefe de Catedra" "Postulante" "Responsable Administrativo"</li>
-		<li>"Postulaciones"  <-- No hace falta</li> 
-	</ul>
-   Se adaptan los Tiles al rol actual que tiene la session. Debajo de los Tiles, se explica que la seccion en forma general, y 
-   describe cada tile mostrado.
-  </div>
-</article>
 
 <article class="message is-warning">
   <div class="message-header">
