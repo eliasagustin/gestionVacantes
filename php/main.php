@@ -3,9 +3,10 @@
 	# Conexion a la base de datos #
 	function conexion(){
 		$pdo = new PDO('mysql:host=localhost;dbname=gvac', 'agustin', 'tuvieja');
+		//$pdo = new PDO('mysql:host=gestionvacanteselias.000webhostapp.com;dbname=id20742267_gvac', 'id20742267_gvac_us', 'Gvac_pass1');
 		return $pdo;
 	}
-
+	//$pdo = new PDO('mysql:host=localhost;dbname=gvac', 'agustin', 'tuvieja');
 
 	# Verificar datos #
 	function verificar_datos($filtro,$cadena){

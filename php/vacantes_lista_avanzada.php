@@ -109,7 +109,9 @@ require_once "main.php";
             if($rows['vacante_fecha_cierre'] == '0000-00-00'){
                 $aux =  "Abierta";
                 $aux2 =  "href='index.php?vista=vacante_id_cerrar&vacante_id='".$rows['vacante_id']."";
-                
+                if ($rol!="Responsable Administrativo"){
+                    $aux2 =  "href='#' disabled";
+                }
             }else{
                 $aux =  "Cerrada";
                 $aux2 =  "href='#' disabled";

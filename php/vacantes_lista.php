@@ -2,6 +2,7 @@
 require_once "main.php";
     	/*== receta datos ==*/
 
+    
     $inicio = ($pagina>0) ? (($pagina * $registros)-$registros) : 0;
 	$tabla="";
 		$consulta_datos="SELECT * FROM vacante WHERE vacante_fecha_cierre = '0000-00-00' ORDER BY vacante_id ASC LIMIT $inicio,$registros";
@@ -37,7 +38,11 @@ require_once "main.php";
             </thead>
             <tbody>
 	';
-
+    if($rol=="Postulante"){
+        $aux2 =  " enabled";
+    }else{
+        $aux2 =  " disabled";
+    };
 	if($total>=1 && $pagina<=$Npaginas){
 		$contador=$inicio+1;
 		$pag_inicio=$inicio+1;
@@ -50,7 +55,7 @@ require_once "main.php";
                     <td>'.$rows['vacante_fecha_apertura'].'</td>
                     <td>'.$rows['vacante_fecha_cierre_estipulada'].'</td>
                     <td>
-                        <a href="#" class="button is-info is-rounded is-small">Postularse</a>
+                        <a'.$aux2.' href="#" class="button is-info is-rounded is-small">Postularse</a>
                     </td>
                     <td>
                         <a href="index.php?vista=vacante_detallada&vacante_id='.$rows['vacante_id'].'" class="button is-success is-rounded is-small">Detalles</a>

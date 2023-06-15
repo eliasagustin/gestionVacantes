@@ -4,6 +4,7 @@
 </div>
 <?php 
     require "./php/guard.php";
+    
 ?>
 <div class="container pb-6 pt-6">  
 <?php
