@@ -25,3 +25,29 @@
     });
 </script>
 <script src="./js/ajax.js"></script>
+<script>
+    function rellenaLogin(a){
+        switch (a) {
+            case 1:
+                document.getElementById('login_usuario').value = "eliasagustin";
+                document.getElementById('login_clave').value = "Administrador";
+                break;
+            case 2:
+                document.getElementById('login_usuario').value = "eliasagustin2";
+                document.getElementById('login_clave').value = "Administrador";
+                break;
+            case 3:
+                document.getElementById('login_usuario').value = "eliasagustin3";
+                document.getElementById('login_clave').value = "Administrador";
+                break;
+            case 4:
+                document.getElementById('login_usuario').value = "eliasagustin4";
+                document.getElementById('login_clave').value = "Administrador";
+                break;
+            case 5:
+                document.getElementById('login_usuario').value = "eliasagustin5";
+                document.getElementById('login_clave').value = "Administrador";
+                break;
+            }
+    }
+</script>
