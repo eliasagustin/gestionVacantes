@@ -14,11 +14,11 @@
     }
 
     if(isset($_GET['vista']) || !$_GET['vista']==""){
-        if(($_GET['vista']=="listar_vacantes_abiertas")&&(in_array($rol, ["Invitado","Administrador","Jefe de Catedra","Responsable Administrativo","Postulante"]))){
+        if(($_GET['vista']=="listar_vacantes_abiertas")&&(in_array($rol, ["Invitado","Jefe de Catedra","Responsable Administrativo","Postulante"]))){
             echo "El elemento '$rol' se encuentra en el arreglo. Ahora hay q elegir q redirigir";
         };
 
-        if(($_GET['vista']=="abrir_vacante")&&(!in_array($rol, ["Administrador","Jefe de Catedra","Responsable Administrativo","Postulante"]))){
+        if(($_GET['vista']=="abrir_vacante")&&(!in_array($rol, ["Responsable Administrativo"]))){
                 echo '<article class="message is-warning mt-6">
                         <div class="message-header">
                             <p>Error de alcance</p>
