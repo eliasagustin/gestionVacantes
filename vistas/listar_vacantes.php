@@ -6,13 +6,12 @@ include "./php/breadcum.php";?>
 <div class="container is-fluid">
     <h1 class="title">Listado de Vacantes</h1>
 </div>
-<?php 
-    require "./php/guard.php";
-?>
+
 
 <!-- <div class="container pb-6 pt-6"> -->
 <?php
     require_once "./php/main.php";
+    require "./php/guard.php";
 
     # Seteo las variables necesarias para que funcione el paginador, luego lo llamo #
     if(!isset($_GET['page'])){ // consulto si viene pag iniciada
@@ -30,7 +29,7 @@ include "./php/breadcum.php";?>
     $busqueda="";
 
     # Paginador usuario #
-    
+    //$rol = $_SESSION['rol'];
 ?>
 <form action="./php/vacantes_lista_avanzada.php" method="POST" class="FormularioAjax" enctype="multipart/form-data" >
     <div class="columns pt-4">
@@ -67,8 +66,8 @@ include "./php/breadcum.php";?>
                                 <?php
                                     $materias=conexion();
                                     $materias=$materias->query("SELECT * FROM materia");
-                                    if($materias->rowCount()>0){
-                                        $materias=$materias->fetchAll();
+                                    if(mysqli_num_rows($materias)>0){
+                                        $materias=$materias->fetch_all(MYSQLI_ASSOC);
                                         foreach($materias as $row){
                                             echo '<option value="'.$row['materia_id'].'" >'.$row['materia_nombre'].'</option>';
                                         }
@@ -192,11 +191,13 @@ include "./php/breadcum.php";?>
         </div>
     </div>
     <p class="has-text-right mb-5">
+        <input type="hidden" id="custId" name="RId" value="<?php echo $rol;?>">
         <button type="submit" class="button is-info is-rounded">Filtrar</button>&nbsp;&nbsp;
     </p>
 </form>
     <div class="form-rest">
-    
-        <?php require_once "./php/vacantes_lista_avanzada.php";?>
+            
+        <?php $rol = $_SESSION['rol'];
+        require_once "./php/vacantes_lista_avanzada.php";?>
     </div>
 </div>

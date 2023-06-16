@@ -6,9 +6,9 @@
         $check_rol=conexion();
         $rol = $_SESSION['rol'];
         $check_rol=$check_rol->query("SELECT * FROM rol WHERE rol_id='$rol'");
-        if($check_rol->rowCount()==1){
-            $check_rol=$check_rol->fetch();
-            $rol = $check_rol['rol_descripcion'];
+        if(mysqli_num_rows($check_rol)==1){
+            $check_rol=$check_rol->fetch_all(MYSQLI_ASSOC);
+            $rol = $check_rol[0]['rol_descripcion'];
         }
         $check_rol=null;
     }

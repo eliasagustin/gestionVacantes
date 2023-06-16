@@ -8,18 +8,20 @@ require_once "main.php";
 		$consulta_datos="SELECT * FROM vacante WHERE vacante_fecha_cierre = '0000-00-00' ORDER BY vacante_id ASC LIMIT $inicio,$registros";
         //TODO filtrar las vacantes si fecha_cierre es null
         $consulta_materia="SELECT materia_nombre FROM materia ORDER BY materia_id";
-		$consulta_total="SELECT COUNT(vacante_id) FROM vacante WHERE vacante_fecha_cierre = '0000-00-00'";
+		$consulta_total="SELECT vacante_id FROM vacante WHERE vacante_fecha_cierre = '0000-00-00'";
 		
 	$conexion=conexion();
 
-    $materia_nombre= $conexion->query($consulta_materia);
-    $materia_nombre = $materia_nombre->fetchAll();
+    $materia_nombre = $conexion->query($consulta_materia);
+	$materia_nombre = $materia_nombre->fetch_all(MYSQLI_ASSOC);
+    //$materia_nombre = $materia_nombre->fetchAll();
 
 	$datos = $conexion->query($consulta_datos);
-	$datos = $datos->fetchAll();
+	$datos = $datos->fetch_all(MYSQLI_ASSOC);
+	// $datos = $datos->fetchAll();
 
 	$total = $conexion->query($consulta_total);
-	$total = (int) $total->fetchColumn();
+	$total = (int) mysqli_num_rows($total);
 
 	$Npaginas =ceil($total/$registros);
 

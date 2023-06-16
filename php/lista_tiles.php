@@ -6,10 +6,11 @@
         $check_rol=conexion();
         $rol = $_SESSION['rol'];
         $check_rol=$check_rol->query("SELECT * FROM rol WHERE rol_id='$rol'");
-        if($check_rol->rowCount()==1){
-            $check_rol=$check_rol->fetch();
-            $rol = $check_rol['rol_descripcion'];
+        if(mysqli_num_rows($check_rol)==1){
+            $rows=$check_rol->fetch_all(MYSQLI_ASSOC);
+            $rol = $rows[0]['rol_descripcion'];
         }
+        $rows=null;
         $check_rol=null;
     }
     $tile_tile = [];
@@ -120,6 +121,7 @@
                 ];
             break;
             case "Postulante":
+                
                 $tile_tile = [
                     "titulo" => ["Listar Vacantes Abiertas","Listar Vacantes"],
                     "link" => ["listar_vacantes_abiertas","listar_vacantes"],

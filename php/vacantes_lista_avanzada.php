@@ -1,5 +1,3 @@
-
-
 <?php
 require_once "main.php";
     	/*== receta datos ==*/
@@ -64,24 +62,36 @@ require_once "main.php";
     } else {
         $receta ="ORDER BY vacante_id ASC";
     }
-     //echo date("Y-m-d");
-    $tabla="";
 
+    $tabla="";
+    
     $consulta_datos="SELECT * FROM vacante ".$receta;
     //TODO filtrar las vacantes si fecha_cierre es null
     $consulta_materia="SELECT materia_nombre FROM materia ORDER BY materia_id";
-    $consulta_total="SELECT COUNT(vacante_id) FROM vacante ".$receta;
-		
+    $consulta_total="SELECT vacante_id FROM vacante ".$receta;
 	$conexion=conexion();
 
-    $materia_nombre= $conexion->query($consulta_materia);
-    $materia_nombre = $materia_nombre->fetchAll();
+    $materia_nombre = $conexion->query($consulta_materia);
+    $materia_nombre = $materia_nombre->fetch_all(MYSQLI_ASSOC);
 
 	$datos = $conexion->query($consulta_datos);
-	$datos = $datos->fetchAll();
+	$datos = $datos->fetch_all(MYSQLI_ASSOC);
 
 	$total = $conexion->query($consulta_total);
-	$total = (int) $total->fetchColumn();
+	$total = (int) mysqli_num_rows($total);
+
+    if (isset($_POST['RId'])){
+        //echo "RId= ".$_POST['RId'];
+        $rol = $_POST['RId'];
+     } else {
+        //echo "rol ".$rol;
+        if (($rol>0) && ($rol<5)){
+            $consulta_rol="SELECT rol_descripcion FROM rol WHERE rol_id = '".$rol."'";
+            $c_rol = $conexion->query($consulta_rol);
+	        $c_rol = $c_rol->fetch_all(MYSQLI_ASSOC);
+            $rol = $c_rol[0]['rol_descripcion'];
+        }
+     }
 
 	//$Npaginas =ceil($total/$registros);
 
@@ -109,6 +119,7 @@ require_once "main.php";
             if($rows['vacante_fecha_cierre'] == '0000-00-00'){
                 $aux =  "Abierta";
                 $aux2 =  "href='index.php?vista=vacante_id_cerrar&vacante_id='".$rows['vacante_id']."";
+                
                 if ($rol!="Responsable Administrativo"){
                     $aux2 =  "href='#' disabled";
                 }

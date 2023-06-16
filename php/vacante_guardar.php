@@ -85,7 +85,7 @@
     /*== Verificando materia ==*/
     $check_materia=conexion();
     $check_materia=$check_materia->query("SELECT materia_id FROM materia WHERE materia_nombre like '$materia'");
-    if($check_materia->rowCount()==0){
+    if(mysqli_num_rows($check_materia)==0){
         echo '
             <div class="notification is-danger is-light">
                 <strong>¡Ocurrio un error inesperado!</strong><br>
@@ -94,7 +94,7 @@
         ';
         exit();
     }else{
-        $check_materia=$check_materia->fetch();
+        $check_materia=$check_materia->fetch_all(MYSQLI_ASSOC);
     }
 
     /*== Verificando Nombre del puesto ==*/
@@ -110,19 +110,14 @@
 
 	/*== Guardando datos ==*/
     $guardar_vacante=conexion();
-    $guardar_vacante=$guardar_vacante->prepare("INSERT INTO vacante(vacante_nombre_puesto,vacante_descripcion_puesto,vacante_fecha_apertura,vacante_fecha_cierre_estipulada,materia_id) VALUES(:vac_nom_puesto,:vac_desc_puesto,:vac_fec_apertura,:vac_fec_cierre_est,:materia)");
+    $mysqli_stmt=$guardar_vacante->prepare("INSERT INTO vacante(vacante_nombre_puesto,vacante_descripcion_puesto,vacante_fecha_apertura,vacante_fecha_cierre_estipulada,materia_id) 
+    VALUES(?,?,?,?,?)");
+    //echo $check_materia[0]['materia_id'];
+    $mysqli_stmt->bind_param("ssssi", $puesto, $descripcion, $fecha_apertura,$fecha_cierre,$check_materia[0]['materia_id']);
+    $guardar_vacante = $mysqli_stmt->execute();
 
-    $marcadores=[
-        ":vac_nom_puesto"=>$puesto,
-        ":vac_desc_puesto"=>$descripcion,
-        ":vac_fec_apertura"=>$fecha_apertura,
-        ":vac_fec_cierre_est"=>$fecha_cierre,
-        ":materia"=>$check_materia['materia_id']
-    ];
-
-    $guardar_vacante->execute($marcadores);
-
-    if($guardar_vacante->rowCount()==1){
+    
+    if($guardar_vacante){
         echo '
             <div class="notification is-info is-light">
                 <strong>Registro exitoso!</strong><br>
@@ -137,4 +132,5 @@
             </div>
         ';
     }
+   
     $guardar_vacante=null;

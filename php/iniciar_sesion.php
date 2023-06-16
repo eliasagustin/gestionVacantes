@@ -39,33 +39,36 @@
 
     $check_user=conexion();
     $check_user=$check_user->query("SELECT * FROM usuario WHERE usuario_usuario='$usuario'");
-    if($check_user->rowCount()==1){
+    if(mysqli_num_rows($check_user)==1){
 
-    	$check_user=$check_user->fetch();
+    	$rows=$check_user->fetch_all(MYSQLI_ASSOC);
+        foreach($rows as $row){
+            echo $row["usuario_usuario"]."<br>";
 
-    	if($check_user['usuario_usuario']==$usuario && password_verify($clave, $check_user['usuario_clave'])){
+            if($row['usuario_usuario']==$usuario && password_verify($clave, $row['usuario_clave'])){
 
-    		$_SESSION['id']=$check_user['usuario_id'];
-    		$_SESSION['nombre']=$check_user['usuario_nombre'];
-    		$_SESSION['apellido']=$check_user['usuario_apellido'];
-    		$_SESSION['usuario']=$check_user['usuario_usuario'];
-    		$_SESSION['rol']=$check_user['rol_id'];
+                $_SESSION['id']=$row['usuario_id'];
+                $_SESSION['nombre']=$row['usuario_nombre'];
+                $_SESSION['apellido']=$row['usuario_apellido'];
+                $_SESSION['usuario']=$row['usuario_usuario'];
+                $_SESSION['rol']=$row['rol_id'];
 
-    		if(headers_sent()){
-                //Sino se envían los encabezados recargo la web con js
-				echo "<script> window.location.href='index.php?vista=home'; </script>";
-			}else{
-				header("Location: index.php?vista=home");
-			}
+                if(headers_sent()){
+                    //Sino se envían los encabezados recargo la web con js
+                    echo "<script> window.location.href='index.php?vista=home'; </script>";
+                }else{
+                    header("Location: index.php?vista=home");
+                }
 
-    	}else{
-    		echo '
-	            <div class="notification is-danger is-light">
-	                <strong>¡Ocurrio un error inesperado!</strong><br>
-	                Usuario o clave incorrectos
-	            </div>
-	        ';
-    	}
+            }else{
+                echo '
+                    <div class="notification is-danger is-light">
+                        <strong>¡Ocurrio un error inesperado!</strong><br>
+                        Usuario o clave incorrectos
+                    </div>
+                ';
+            }
+        }
     }else{
     	echo '
             <div class="notification is-danger is-light">

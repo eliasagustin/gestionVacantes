@@ -6,18 +6,6 @@
 
 <?php 
     require "./php/guard.php";
-    // if($rol=='Invitado'){
-    //     echo '<article class="message is-warning mt-6">
-    //             <div class="message-header">
-    //                 <p>Error de alcance</p>
-    //             </div>
-    //             <div class="message-body">
-    //                 No posees los permisos necesarios para abrir una vacante. En caso de no ser correcto contáctate con nuestro soporte.
-    //             </div>
-    //         </article>
-    //         ';
-    //     exit();
-    // }
 ?>
 
 <div class="container pb-6">
@@ -42,10 +30,10 @@
                             <?php
                                 $materias=conexion();
                                 $materias=$materias->query("SELECT * FROM materia");
-                                if($materias->rowCount()>0){
-                                    $materias=$materias->fetchAll();
+                                if(mysqli_num_rows($materias)>0){
+                                    $materias=$materias->fetch_all(MYSQLI_ASSOC);
                                     foreach($materias as $row){
-                                        echo '<option value="'.$row['materia_nombre'].'" >'.$row['materia_nombre'].'</option>';
+                                        echo '<option value="'.$row["materia_nombre"].'" >'.$row["materia_nombre"].'</option>';
                                     }
                                 }
                                 $materias=null;
