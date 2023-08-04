@@ -58,11 +58,19 @@
                         <li><a href="index.php?vista=listar_vacantes">Listar vacantes</a></li>
                     </ul>
                 </li>
-                <li><a class="is-active" href="index.php?vista=postulacion">Postulaciones</a>
-                    <ul>
-                        <li><a>Mis postulaciones</a></li>
-                    </ul>
-                </li>
+                <?php
+                     if (isset($_SESSION['id'])){
+                        $mi_rol = $_SESSION['rol'];
+                        if($mi_rol==4)
+                        echo '
+                            <li><a class="is-active" href="index.php?vista=postulacion">Postulaciones</a>
+                                <ul>
+                                    <li><a href="index.php?vista=listar_postulaciones&user_id='.$mi_rol.'">Mis postulaciones</a></li>
+                                </ul>
+                            </li>
+                        ';
+                     }
+                ?>
                 <li><a class="is-active">Usuarios</a>
                     <ul>
                         <?php

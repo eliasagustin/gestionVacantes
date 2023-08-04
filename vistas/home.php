@@ -1,11 +1,3 @@
-<!-- <nav class="breadcrumb has-succeeds-separator" aria-label="breadcrumbs">
-  <ul>
-    <li><a href="index.php?vista=home">Inicio</a></li>
-    <li><a href="#">Documentation</a></li>
-    <li><a href="#">Components</a></li>
-    <li class="is-active"><a href="#" aria-current="page">Breadcrumb</a></li>
-  </ul>
-</nav> -->
 <?php include "./php/breadcum.php"; ?>
 <br>
 <div class="container is-fluid">
@@ -19,11 +11,6 @@
 	
 </div>
 <br>
-<?php require "./php/lista_tiles.php"; ?>
-
-<br>
-
-
 <article class="message is-warning">
   <div class="message-header">
     <p>Recordar, arreglar bug</p>
@@ -32,3 +19,6 @@
    Cuando estoy con una session abierta y fuerzo el login -> podria reloguearme? -> debería corregir el codigo y cuando abre login si estoy logueado me debería llevar a home.
   </div>
 </article>
+
+<br>
+<?php require "./php/lista_tiles.php"; ?>
