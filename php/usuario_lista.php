@@ -88,21 +88,6 @@
 			}
 			$tabla.='
 				</tr>';
-			// $tabla.='
-			// 	<tr class="has-text-centered" >
-			// 		<td>'.$contador.'</td>
-            //         <td>'.$rows['usuario_nombre'].'</td>
-            //         <td>'.$rows['usuario_apellido'].'</td>
-            //         <td>'.$rows['usuario_usuario'].'</td>
-            //         <td>'.$rows['usuario_email'].'</td>
-            //         <td>
-            //             <a href="index.php?vista=user_update&user_id_up='.$rows['usuario_id'].'" class="button is-success is-rounded is-small">Actualizar</a>
-            //         </td>
-            //         <td>
-            //             <a href="'.$url.$pagina.'&user_id_del='.$rows['usuario_id'].'" class="button is-danger is-rounded is-small">Eliminar</a>
-            //         </td>
-            //     </tr>
-            // ';
             $contador++;
 		}
 		$pag_final=$contador-1;

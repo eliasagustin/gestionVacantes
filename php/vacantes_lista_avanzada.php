@@ -74,6 +74,13 @@ require_once "main.php";
     $materia_nombre = $conexion->query($consulta_materia);
     $materia_nombre = $materia_nombre->fetch_all(MYSQLI_ASSOC);
 
+    # Cerrar Vacante #
+    if(isset( $_GET['close_vac_id']) ){
+        if($_SESSION['rol']==3){
+            require_once "./php/cerrar_vacante.php";
+        }
+    }
+    
 	$datos = $conexion->query($consulta_datos);
 	$datos = $datos->fetch_all(MYSQLI_ASSOC);
 
@@ -92,15 +99,7 @@ require_once "main.php";
             $rol = $c_rol[0]['rol_descripcion'];
         }
      }
-     
-	//$Npaginas =ceil($total/$registros);
-    # Eliminar usuario #
-    if(isset( $_GET['close_vac_id']) ){
-        if($rol=="Responsable Administrativo"){
-            require_once "./php/cerrar_vacante.php";
-        }
-    }
-    
+
 	$tabla.='
 	<div class="table-container">
         <table class="table is-bordered is-striped is-narrow is-hoverable is-fullwidth">
@@ -124,14 +123,8 @@ require_once "main.php";
             $aux = "";
             if($rows['vacante_fecha_cierre'] == '0000-00-00'){
                 $aux =  "Abierta";
-                $aux2 =  "href='index.php?vista=cerrar_vacante&vacante_id='".$rows['vacante_id']."";
-                
-                if ($rol!="Responsable Administrativo"){
-                    $aux2 =  "href='#' disabled";
-                }
             }else{
                 $aux =  "Cerrada";
-                $aux2 =  "href='#' disabled";
             }
             // Por cada fila de vacantes consultar a tabla "postulacion" y llamar funcion contar filas
             // $rows['vacante_id']
