@@ -65,14 +65,29 @@
                 </li>
                 <li><a class="is-active">Usuarios</a>
                     <ul>
-                        <li><a>Crear Usuario</a></li>
-                        <li><a>Listar Usuario</a></li>
+                        <?php
+                        if (isset($_SESSION['id'])){
+                            $mi_ID = $_SESSION['id'];
+                            echo '
+                                <li><a href="index.php?vista=user_update&user_id_up='.$mi_ID.'">Mi Usuario</a></li>
+                            ';
+                        }
+                        ?>
+                        
+                        <?php 
+                        if (!isset($_SESSION['rol']) || $_SESSION['rol']==1 || $_SESSION['rol']==3){
+                            ?>
+                            <li><a href="index.php?vista=user_new">Crear Usuario</a></li>
+                            <?php }
+                        ?>
+                        
+                        <li><a href="index.php?vista=listar_usuarios">Listar Usuario</a></li>
                     </ul>
                 </li>
                 <li><a class="is-active">Soporte</a>
                     <ul>
-                        <li><a>Consulta FAQs</a></li>
-                        <li><a>Solicitar soporte</a></li>
+                        <li><a href="index.php?vista=faq">Consulta FAQs</a></li>
+                        <li><a href="index.php?vista=soporte">Solicitar soporte</a></li>
                     </ul>
                 </li>
         </aside>

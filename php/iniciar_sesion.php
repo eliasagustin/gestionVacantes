@@ -51,6 +51,7 @@
                 $_SESSION['nombre']=$row['usuario_nombre'];
                 $_SESSION['apellido']=$row['usuario_apellido'];
                 $_SESSION['usuario']=$row['usuario_usuario'];
+                $_SESSION['email']=$row['usuario_email'];
                 $_SESSION['rol']=$row['rol_id'];
 
                 if(headers_sent()){

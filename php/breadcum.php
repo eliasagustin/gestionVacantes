@@ -30,7 +30,23 @@ if(isset($_GET['vista']) || !$_GET['vista']==""){
             echo '<li><a href="index.php?vista=vacante">Vacantes</a></li>';
             echo '<li class="is-active"><a href="index.php?vista=home">Abrir Vacante</a></li>';
             break;
+        case "vacante_detallada":
+            echo '<li><a href="index.php?vista=home">Inicio</a></li>';
+            echo '<li><a href="index.php?vista=vacante">Vacantes</a></li>';
+            echo '<li class="is-active">Detalle vacante</li>';
+            break;
+        case "user_new":
+            echo '<li><a href="index.php?vista=home">Inicio</a></li>';
+            echo '<li class="is-active">Crear Usuario</li>';
+            break;
     }
 echo '  </ul>
 </nav>';
+}
+
+// Función de PHP para refrescar la página actual
+function refrescarPagina() {
+    // Redireccionar a la página actual (en este caso, index.php)
+    header("Location: ".$_SERVER['PHP_SELF']);
+    exit; // Asegurarse de que el script termine aquí para evitar problemas con el redireccionamiento
 }

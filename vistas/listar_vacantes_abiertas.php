@@ -6,16 +6,25 @@
     require "./php/guard.php";
     
 ?>
-<div class="container pb-6 pt-6">  
+<div class="container pb-4 pt-4">  
 <?php
         require_once "./php/main.php";
 
-        # Eliminar usuario #
-        /*
-        if(isset($_GET['user_id_del'])){
-            require_once "./php/usuario_eliminar.php";
+        # Postularse usuario #     
+        if(isset($_GET['vac_id_pos']) && isset($_SESSION['rol'])){
+            if($_SESSION['rol']==4){
+                // echo 'vac_id_pos '.$_GET['vac_id_pos'];
+                require_once "./php/usuario_postularse.php";
+            } else {
+                echo '
+            <div class="notification is-danger is-light">
+                <strong>¡Ocurrio un error inesperado!</strong><br>
+                Problema de credenciales y permisos para postularse.
+            </div>
+            ';
+            }
         }
-        */
+        
         # Seteo las variables necesarias para que funcione el PAGINADOR, luego lo llamo #
         if(!isset($_GET['page'])){ // consulto si viene pag iniciada
             $pagina=1;              //la inicio

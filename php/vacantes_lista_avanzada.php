@@ -92,9 +92,15 @@ require_once "main.php";
             $rol = $c_rol[0]['rol_descripcion'];
         }
      }
-
+     
 	//$Npaginas =ceil($total/$registros);
-
+    # Eliminar usuario #
+    if(isset( $_GET['close_vac_id']) ){
+        if($rol=="Responsable Administrativo"){
+            require_once "./php/cerrar_vacante.php";
+        }
+    }
+    
 	$tabla.='
 	<div class="table-container">
         <table class="table is-bordered is-striped is-narrow is-hoverable is-fullwidth">
@@ -118,7 +124,7 @@ require_once "main.php";
             $aux = "";
             if($rows['vacante_fecha_cierre'] == '0000-00-00'){
                 $aux =  "Abierta";
-                $aux2 =  "href='index.php?vista=vacante_id_cerrar&vacante_id='".$rows['vacante_id']."";
+                $aux2 =  "href='index.php?vista=cerrar_vacante&vacante_id='".$rows['vacante_id']."";
                 
                 if ($rol!="Responsable Administrativo"){
                     $aux2 =  "href='#' disabled";
@@ -127,6 +133,10 @@ require_once "main.php";
                 $aux =  "Cerrada";
                 $aux2 =  "href='#' disabled";
             }
+            // Por cada fila de vacantes consultar a tabla "postulacion" y llamar funcion contar filas
+            // $rows['vacante_id']
+            $consulta_postulaciones = "SELECT postulacion_id FROM postulacion WHERE vacante_id like ".$rows['vacante_id'];
+            $consulta_postulaciones = $conexion->query($consulta_postulaciones);
 			$tabla.='
 				<tr class="has-text-centered" >
 					<td>'.$aux.'</td>
@@ -134,16 +144,24 @@ require_once "main.php";
                     <td>'.$rows['vacante_fecha_apertura'].'</td>
                     <td>'.$rows['vacante_fecha_cierre_estipulada'].'</td>
                     <td>'.$rows['vacante_nombre_puesto'].'</td>
-                    <td>'.$rows['vacante_id'].'</td>
-                    <td>
-                        <a '.$aux2.' class="button disable is-danger is-rounded is-small">Cerrar</a>
-                    </td>
-                    <td>
+                    <td>'.mysqli_num_rows($consulta_postulaciones).'</td>';
+            if($rol=="Responsable Administrativo"){
+                if($rows['vacante_fecha_cierre'] == '0000-00-00'){
+                    $tabla.='<td>
+                            <a href="index.php?vista=listar_vacantes&close_vac_id='.$rows['vacante_id'].'"  class="button disable is-danger is-rounded is-small">Cerrar</a>
+                        </td>';
+                } else {
+                    $tabla.='<td>
+                            <a class="button is-warning is-active is-rounded is-static is-small">Cerrada</a>
+                        </td>';
+                }
+            }
+            
+            $tabla.='<td>
                         <a href="index.php?vista=vacante_detallada&vacante_id='.$rows['vacante_id'].'" class="button is-success is-rounded is-small">Detalles</a>
                     </td>
                 </tr>
             ';
-                //TODO Terminar vista detallada q solo muestra los datos de una determinada vacante
                 //TODO Terminar las vistas limitada por permiso para "listar_vacantes_abiertas.php"
                 //TODO Terminar las vistas limitada por permiso agrergar boton postularse si es POSTULANTE de lo contrario el boton se esconde
             $contador++;
