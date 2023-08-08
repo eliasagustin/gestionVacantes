@@ -79,7 +79,7 @@
 			if(isset($_SESSION['rol'])&&($_SESSION['rol']==1)){
 				$tabla.='		
                     <td>
-                        <a href="index.php?vista=user_update&user_id_up='.$rows['usuario_id'].'" class="button is-success is-rounded is-small">Actualizar</a>
+                        <a href="index.php?vista=user_update&user_id_up='.$rows['usuario_id'].'" class="button is-success is-rounded is-small">Permisos</a>
                     </td>
                     <td>
                         <a href="'.$url.$pagina.'&user_id_del='.$rows['usuario_id'].'" class="button is-danger is-rounded is-small">Eliminar</a>

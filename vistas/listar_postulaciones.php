@@ -7,10 +7,10 @@
     <?php
         require_once "./php/main.php";
 
-        # Eliminar usuario #
-        // if(isset( $_GET['user_id_del']) ){
-        //     require_once "./php/usuario_eliminar.php";
-        // }
+        # Eliminar postulacion #
+        if(isset( $_GET['pos_id_del']) ){
+            require_once "./php/postulacion_eliminar.php";
+        }
 
         if(!isset($_GET['page'])){
             $pagina=1;
@@ -22,7 +22,7 @@
         }
 
         $pagina=limpiar_cadena($pagina);
-        $url="index.php?vista=listar_usuarios&page=";
+        $url="index.php?vista=listar_postulaciones&page=";
         $registros=10;
         $busqueda="";
 

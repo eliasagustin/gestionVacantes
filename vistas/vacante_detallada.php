@@ -6,6 +6,7 @@
         require_once "./php/main.php";
         require "./php/guard.php";
     $vacante_id = $_GET['vacante_id'];
+    $auxS = $_SESSION['id'];
     $consulta_datos="SELECT * FROM vacante WHERE vacante_id LIKE $vacante_id";
     $conexion=conexion();
     $datos = $conexion->query($consulta_datos);
@@ -49,11 +50,55 @@
                     </div>
                 </div>
                 <footer class="card-footer">
-                <p class="card-footer-item">
-                <span>
-                    Fecha estimada de cierre <?php echo $row['vacante_fecha_cierre_estipulada']; ?>
-                </span>
-                </p>
+                
+                    <?php
+                    if($row['vacante_fecha_cierre'] == '0000-00-00'){
+                        $salida = '
+                                <p class="card-footer-item">
+                                <span>
+                                    Fecha estimada de cierre '.$row['vacante_fecha_cierre_estipulada'].'
+                                </span>
+                                </p>';
+                    }else{
+                        
+                        $salida = '
+                                <p class="card-footer-item">
+                                <span>
+                                    Cerrada el '.$row['vacante_fecha_cierre'].'
+                                </span>
+                                </p>';
+                    }
+                    
+                        if(isset($_SESSION['rol'])){
+                            if($_SESSION['rol']==4){
+                                //Deberia preguntar si está postulado
+                                $consulta_datos_p = "SELECT * from postulacion WHERE usuario_id = $auxS and vacante_id = $vacante_id";
+                                $datos_p = $conexion->query($consulta_datos_p);
+                                if(mysqli_num_rows($datos_p)==0){
+                                    //postularse
+                                    if($row['vacante_fecha_cierre'] == '0000-00-00'){
+                                    $salida .= '
+                                    <p class="card-footer-item">
+                                        <span>
+                                        <a href="index.php?vista=listar_vacantes&pos_id_del='.$row['vacante_id'].'"  class="button is-primary is-rounded is-small">Postularse</a>
+                                        </span>
+                                    </p>';
+                                    }
+                                } else {
+                                    // eliminar postulación
+                                    if($row['vacante_fecha_cierre'] == '0000-00-00'){
+                                        $salida .= '
+                                            <p class="card-footer-item">
+                                                <span>
+                                                <a href="index.php?vista=listar_postulaciones&pos_id_del='.$row['vacante_id'].'"  class="button is-danger is-rounded is-small">Eliminar postulación</a>
+                                                </span>
+                                            </p>';
+                                    }
+                                }
+                            }
+                        }
+                    echo $salida;
+                    ?>
                 </footer>
             <?php
         }
