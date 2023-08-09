@@ -85,7 +85,7 @@
                         ';
                      }
                 ?>
-                <li><a class="is-active">Usuarios</a>
+                <li><a class="is-active" href="index.php?vista=usuarios">Usuarios</a>
                     <ul>
                         <?php
                         if (isset($_SESSION['id'])){
@@ -106,7 +106,7 @@
                         <li><a href="index.php?vista=listar_usuarios">Listar Usuario</a></li>
                     </ul>
                 </li>
-                <li><a class="is-active">Soporte</a>
+                <li><a class="is-active" href="index.php?vista=ayuda">Soporte</a>
                     <ul>
                         <li><a href="index.php?vista=faq">Consulta FAQs</a></li>
                         <li><a href="index.php?vista=soporte">Solicitar soporte</a></li>

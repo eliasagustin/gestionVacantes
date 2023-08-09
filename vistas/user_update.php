@@ -1,3 +1,4 @@
+<?php include "./php/breadcum.php";?>
 <div class="container is-fluid mb-2">
 	<?php 
     if (!isset($_GET['user_id_up'])){

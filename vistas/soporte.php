@@ -2,13 +2,14 @@
 <div class="container is-fluid">
 <?php
 		require_once "./php/main.php";
+        include "./php/breadcum.php";
 	?>
     <h1 class="title">Formulario de contacto</h1>
     <br>
     <h2 class="subtitle">Rellena el siguiente formulario para poder ayudarte/asesorarte</h2>
 </div>
 <hr>
-	<div class="form-rest mb-6 mt-6"></div>
+<div class="form-rest mb-6 mt-6"></div>
 
 <form action="./php/enviar_email.php"  method="POST" class="FormularioAjax" autocomplete="off" enctype="multipart/form-data" >
 
@@ -68,19 +69,19 @@
 </div>
 
 <div class="field is-horizontal">
-            <div class="field-label is-normal">
-                <label class="label">Mensaje</label>
-            </div>
-            <div class="field-body">
-                <div class="field">
-                    <div class="control">
-                        <textarea class="textarea" minlength="10" maxlength="250" name="mensaje" placeholder="Desarrolle su consulta en 250 caracteres max." required></textarea>
-                    </div>
-                </div>
+    <div class="field-label is-normal">
+        <label class="label">Mensaje</label>
+    </div>
+    <div class="field-body">
+        <div class="field">
+            <div class="control">
+                <textarea class="textarea" minlength="10" maxlength="250" name="mensaje" placeholder="Desarrolle su consulta en 250 caracteres max." required></textarea>
             </div>
         </div>
-        
-		<p class="has-text-centered mt-5">
-			<button type="submit" class="button is-info is-rounded">Enviar</button>
-		</p>
-	</form>
+    </div>
+</div>
+
+<p class="has-text-centered mt-5">
+    <button type="submit" class="button is-info is-rounded">Enviar</button>
+</p>
+</form>

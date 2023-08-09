@@ -1,3 +1,4 @@
+<?php include "./php/breadcum.php";?>
 <div class="container is-fluid mb-4">
     <h1 class="title">Usuarios</h1>
     <h2 class="subtitle">Lista de usuarios</h2>

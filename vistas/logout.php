@@ -8,9 +8,9 @@
 		session_destroy();
 		//session_unset();
 		if ($_GET['vista'] == 'logout'){
-			if(headers_sent()){
-				header( "refresh:3; Location: index.php?vista=home" );
-				}  else {
+			// if(headers_sent()){
+			// 	header( "refresh:3; Location: index.php?vista=home" );
+			// 	}  else {
 					echo "<script>
 					setTimeout(function () {
 						window.location.href= 'index.php?vista=home';
@@ -25,6 +25,6 @@
 								Serás redireccionado al inicio con rol de Invitado.
 							</div>
 						</article>';
-				}
+				// }
 		};
 	};

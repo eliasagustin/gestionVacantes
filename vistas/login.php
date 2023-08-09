@@ -1,5 +1,28 @@
 <div class="main-container">
-	
+	<?php
+	if(isset($_SESSION['id'])){
+		if ($_GET['vista'] == 'login'){
+			// if(headers_sent()){
+			// 	header( "refresh:3; Location: index.php?vista=home" );
+			// 	}  else {
+					echo "<script>
+					setTimeout(function () {
+						window.location.href= 'index.php?vista=home';
+					 },1500);
+					 </script>";
+					 echo '
+						<article class="message is-info">
+							<div class="message-header">
+								<p>Usuario Activo</p>
+							</div>
+							<div class="message-body">
+								Serás redireccionado al inicio con el usuario actual.
+							</div>
+						</article>';
+				// }
+		};
+	} else {
+	?>
 	<form class="box login" action="" method="POST" autocomplete="off">
 		<h4 class="title is-4 has-text-centered">Modulo Gestion de Vacantes</h4>
 
@@ -27,8 +50,8 @@
 			<button type="button" onclick="rellenaLogin(1)" class="button is-success is-rounded m-2">Admin</button>
 			<button type="button" onclick="rellenaLogin(2)" class="button is-success is-rounded m-2">Pos 1</button>
 			<button type="button" onclick="rellenaLogin(3)" class="button is-success is-rounded m-2">Pos 2</button>
-			<button type="button" onclick="rellenaLogin(4)" class="button is-success is-rounded m-2">R Adm</button>
-			<button type="button" onclick="rellenaLogin(5)" class="button is-success is-rounded m-2">J Cat</button>
+			<button type="button" onclick="rellenaLogin(4)" class="button is-success is-rounded m-2">R.Adm</button>
+			<button type="button" onclick="rellenaLogin(5)" class="button is-success is-rounded m-2">J.Cat</button>
 		</div>
 		<?php
 			if(isset($_POST['login_usuario']) && isset($_POST['login_clave'])){
@@ -39,8 +62,10 @@
 	</form>
 	
 	<?php 
+		}
+		
 		require "./inc/script.php"
-	?><br>
+	?>
 	
 </div>
 

@@ -2,9 +2,7 @@
 	require_once "../inc/session_start.php";
 
 	require_once "main.php";
-?>
 
-    <?php
     $error = false;
     	/*== Almacenando datos ==*/
     if (!isset($_SESSION['nombre'])){

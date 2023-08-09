@@ -10,15 +10,6 @@
 	?>
 	
 </div>
-<br>
-<article class="message is-warning">
-  <div class="message-header">
-    <p>Recordar, arreglar bug</p>
-  </div>
-  <div class="message-body">
-   Cuando estoy con una session abierta y fuerzo el login -> podria reloguearme? -> debería corregir el codigo y cuando abre login si estoy logueado me debería llevar a home.
-  </div>
-</article>
 
 <br>
 <?php require "./php/lista_tiles.php"; ?>
