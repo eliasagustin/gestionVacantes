@@ -53,9 +53,23 @@
                 <li><a class="is-active" href="index.php?vista=home">Inicio</a></li>
                 <li><a class="is-active" href="index.php?vista=vacante">Vacantes</a>
                     <ul>
-                        <li><a href="index.php?vista=abrir_vacante">Abrir vacante</a></li>
+                        <?php
+                            if (isset($_SESSION['id'])){
+                                $mi_ID = $_SESSION['id'];
+                                $mi_rol = $_SESSION['rol'];
+                                if($mi_rol==3)
+                                echo '
+                                    <li><a href="index.php?vista=abrir_vacante">Abrir vacante</a></li>
+                                ';
+                            }
+                        ?>
                         <li><a href="index.php?vista=listar_vacantes_abiertas">Listar vacantes abiertas</a></li>
-                        <li><a href="index.php?vista=listar_vacantes">Listar vacantes</a></li>
+
+                        <?php
+                            if (isset($_SESSION['id'])){
+                                echo '<li><a href="index.php?vista=listar_vacantes">Listar vacantes</a></li>';
+                            }
+                        ?>
                     </ul>
                 </li>
                 <?php

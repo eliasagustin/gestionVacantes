@@ -7,7 +7,7 @@
 		// $username="id20742267_gvac_us";
 		$password="tuvieja";
 		// $password="Gvac_pass1";
-		$dbname="id20742267_gvac";
+		// $dbname="id20742267_gvac";
 		$dbname="gvac";
 		mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
 		$mysqli = new mysqli($host,$username,$password,$dbname);

@@ -87,10 +87,12 @@
                                 } else {
                                     // eliminar postulación
                                     if($row['vacante_fecha_cierre'] == '0000-00-00'){
+                                        $datos_p = $datos_p->fetch_all(MYSQLI_ASSOC);
                                         $salida .= '
                                             <p class="card-footer-item">
                                                 <span>
-                                                <a href="index.php?vista=listar_postulaciones&pos_id_del='.$row['vacante_id'].'"  class="button is-danger is-rounded is-small">Eliminar postulación</a>
+                                                
+                                                <a href="index.php?vista=listar_postulaciones&pos_id_del='.$datos_p[0]['postulacion_id'].'"  class="button is-danger is-rounded is-small">Eliminar postulación</a>
                                                 </span>
                                             </p>';
                                     }

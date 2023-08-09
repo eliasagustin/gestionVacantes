@@ -31,38 +31,28 @@
 
 	$Npaginas =ceil($total/$registros);
 
+	$tabla.='
+	<div class="table-container">
+		<table class="table is-bordered is-striped is-narrow is-hoverable is-fullwidth">
+			<thead>
+				<tr class="has-text-centered">
+					<th>ID</th>
+					<th>Nombres</th>
+					<th>Apellidos</th>
+					<th>Usuario</th>
+					<th>Email</th>';
+
+					
+
 	if(isset($_SESSION['rol'])&&($_SESSION['rol']==1)){
-		$tabla.='
-		<div class="table-container">
-			<table class="table is-bordered is-striped is-narrow is-hoverable is-fullwidth">
-				<thead>
-					<tr class="has-text-centered">
-						<th>#</th>
-						<th>Nombres</th>
-						<th>Apellidos</th>
-						<th>Usuario</th>
-						<th>Email</th>
-						<th colspan="2">Opciones</th>
-					</tr>
-				</thead>
-				<tbody>
-		';
-	} else {
-		$tabla.='
-		<div class="table-container">
-			<table class="table is-bordered is-striped is-narrow is-hoverable is-fullwidth">
-				<thead>
-					<tr class="has-text-centered">
-						<th>#</th>
-						<th>Nombres</th>
-						<th>Apellidos</th>
-						<th>Usuario</th>
-						<th>Email</th>
-					</tr>
-				</thead>
-				<tbody>
+		$tabla.='<th colspan="2">Opciones</th>
 		';
 	}
+	$tabla.='
+					</tr>
+				</thead>
+				<tbody>
+				';
 
 	if($total>=1 && $pagina<=$Npaginas){
 		$contador=$inicio+1;
@@ -70,7 +60,7 @@
 		foreach($datos as $rows){
 			$tabla.='
 				<tr class="has-text-centered" >
-					<td>'.$contador.'</td>
+					<td>'.$rows['usuario_id'].'</td>
                     <td>'.$rows['usuario_nombre'].'</td>
                     <td>'.$rows['usuario_apellido'].'</td>
                     <td>'.$rows['usuario_usuario'].'</td>
