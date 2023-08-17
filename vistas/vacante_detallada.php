@@ -6,7 +6,9 @@
         require_once "./php/main.php";
         require "./php/guard.php";
     $vacante_id = $_GET['vacante_id'];
-    $auxS = $_SESSION['id'];
+    if(isset($_SESSION['id'])){
+        $auxS = $_SESSION['id'];
+    }
     $consulta_datos="SELECT * FROM vacante WHERE vacante_id LIKE $vacante_id";
     $conexion=conexion();
     $datos = $conexion->query($consulta_datos);
@@ -49,8 +51,11 @@
                         <?php echo $row['vacante_descripcion_puesto']; ?>
                     </div>
                 </div>
-                <footer class="card-footer">
-                
+                    <footer class="card-footer">
+                        <?php 
+                            include "./inc/btn_back.php";
+                        ?>
+                        </div>
                     <?php
                     if($row['vacante_fecha_cierre'] == '0000-00-00'){
                         $salida = '
@@ -100,8 +105,12 @@
                             }
                         }
                     echo $salida;
+                    
                     ?>
+                    
                 </footer>
+            </div>
+
             <?php
         }
     }

@@ -83,9 +83,13 @@
                     </div>
                 </div>
             </div>
+            <br>
             <p class="has-text-centered">
-                <button type="submit" class="button is-success is-rounded">Actualizar</button>
+                <button type="submit" class="button is-success is-rounded is-small">Actualizar</button>
             </p>
+            <?php
+                include "./inc/btn_back.php";
+            ?>
         </form>
     </div>
 
@@ -140,14 +144,16 @@
                 <p class="has-text-centered">Abra el desplegable, seleccione uno nuevo rol, luego haga click el boton "actualizar rol".</p>
                 <br>
                 <p class="has-text-centered">
-                    <button type="submit" class="button is-success is-rounded">Actualizar rol</button>
+                    <button type="submit" class="button is-success is-rounded is-small">Actualizar rol</button>
                 </p>
-            </form>
-        </div>
+            
         <?php
+        include "./inc/btn_back.php";
         }
      } 
-     include "./inc/btn_back.php";
+    //  include "./inc/btn_back.php";
      ?>
+        </form>
+        </div>
 </div>
 

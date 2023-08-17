@@ -33,7 +33,7 @@
                                     </a>';
                         } else {
                             echo ' <a href="index.php?vista=login" class="button is-link is-rounded">
-                                        Log In
+                                        Inicio de Sesión
                                     </a>';
                         }
                     ?>

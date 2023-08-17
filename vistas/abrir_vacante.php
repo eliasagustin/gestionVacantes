@@ -8,12 +8,12 @@
     require "./php/guard.php";
 ?>
 
-<div class="container pb-6">
+<div class="container pb-2">
 	<?php
 		require_once "./php/main.php";
 	?>
 
-	<div class="form-rest mb-6 mt-6"></div>
+	<div class="form-rest mb-4 mt-6"></div>
     
 	<form action="./php/vacante_guardar.php" method="POST" class="FormularioAjax" autocomplete="off" enctype="multipart/form-data" >
         
@@ -111,7 +111,10 @@
         </div>
         
 		<p class="has-text-centered mt-5">
-			<button type="submit" class="button is-info is-rounded">Guardar</button>
+			<button type="submit" class="button is-info is-rounded is-small">Guardar</button>
 		</p>
+        <?php
+            include "./inc/btn_back.php";
+        ?>
 	</form>
 </div>
