@@ -25,6 +25,7 @@
 					<tr class="has-text-centered">
 						<th>id</th>
 						<th>Estado</th>
+						<th>Catedra</th>
                         <th>Nombre Busqueda</th>
 						<th>Fecha Postulacion</th>
 						<th colspan="2">Opciones</th>
@@ -49,13 +50,20 @@
                         if($rowV['vacante_fecha_cierre'] == '0000-00-00'){
                             $v_estado = true;
                             $tabla.= "<td><p class='notification is-success is-light is-small p-1'>
-                            Vacante Abierta</p></td>";
+                            Abierta</p></td>";
                         } else {
                             $v_estado = false;
                             $tabla.="<td><p class='notification is-danger is-light p-1'>
-                            Vacante Cerrada</p></td>";
+                            Cerrada</p></td>";
                         }
+
+                        $consulta_datos_vac2 = "SELECT materia_nombre FROM materia WHERE materia_id LIKE ".$rowV['materia_id'];
+                        $datosV2 = $conexion->query($consulta_datos_vac2);
+                        $datosV2 = $datosV2->fetch_assoc();
+
+                        $tabla.= '<td>'.$datosV2['materia_nombre'].'</td>';
                         $tabla.= '<td>'.$rowV['vacante_nombre_puesto'].'</td>';
+                        $datosV2 = null;
                     }
             $tabla.='
                     <td>'.$rows['postulacion_fecha'].'</td>

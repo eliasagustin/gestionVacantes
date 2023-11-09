@@ -72,7 +72,7 @@
                 <div class="field pr-6">
                     <div class="control">
                         <div class="is-fullwidth">
-                        <input class="input" type="password" name="usuario_clave_1" pattern="[a-zA-Z0-9$@.-]{7,100}" maxlength="100" required >
+                        <input class="input" type="password" name="usuario_clave_1" pattern="[a-zA-Z0-9$@.-]{4,100}" minlength="4" maxlength="100" required >
                         </div>
                     </div>
                 </div>
@@ -86,7 +86,7 @@
                 <div class="field pr-6">
                     <div class="control">
                         <div class="is-fullwidth">
-                        <input class="input" type="password" name="usuario_clave_2" pattern="[a-zA-Z0-9$@.-]{7,100}" maxlength="100" required >
+                        <input class="input" type="password" name="usuario_clave_2" pattern="[a-zA-Z0-9$@.-]{4,100}"  minlength="4" maxlength="100" required >
                         </div>
                     </div>
                 </div>

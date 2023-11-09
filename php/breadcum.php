@@ -52,7 +52,7 @@ if(isset($_GET['vista']) || !$_GET['vista']==""){
         case "user_update":
             echo '<li><a href="index.php?vista=home">Inicio</a></li>';
             echo '<li><a href="index.php?vista=usuarios">Usuarios</a></li>';
-            echo '<li class="is-active">Editar mi cuenta</li>';
+            echo '<li class="is-active">Editar cuenta</li>';
             break;
         case "listar_usuarios":
             echo '<li><a href="index.php?vista=home">Inicio</a></li>';

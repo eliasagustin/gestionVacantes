@@ -122,9 +122,9 @@ require_once "main.php";
 		foreach($datos as $rows){
             $aux = "";
             if($rows['vacante_fecha_cierre'] == '0000-00-00'){
-                $aux =  "Abierta";
+                $aux =  '<a class="button is-info is-active is-static is-small">Abierta</a>';
             }else{
-                $aux =  "Cerrada";
+                $aux =  '<a class="button is-warning is-active is-static is-small">Cerrada</a>';
             }
             // Por cada fila de vacantes consultar a tabla "postulacion" y llamar funcion contar filas
             // $rows['vacante_id']
@@ -138,17 +138,17 @@ require_once "main.php";
                     <td>'.$rows['vacante_fecha_cierre_estipulada'].'</td>
                     <td>'.$rows['vacante_nombre_puesto'].'</td>
                     <td>'.mysqli_num_rows($consulta_postulaciones).'</td>';
-            if($rol=="Responsable Administrativo"){
-                if($rows['vacante_fecha_cierre'] == '0000-00-00'){
-                    $tabla.='<td>
-                            <a href="index.php?vista=listar_vacantes&close_vac_id='.$rows['vacante_id'].'"  class="button disable is-danger is-rounded is-small">Cerrar</a>
-                        </td>';
-                } else {
-                    $tabla.='<td>
-                            <a class="button is-warning is-active is-rounded is-static is-small">Cerrada</a>
-                        </td>';
-                }
-            }
+            // if(($rol=="Responsable Administrativo") or ($rol=="Responsable Administrativo")){
+            //     if($rows['vacante_fecha_cierre'] == '0000-00-00'){
+            //         $tabla.='<td>
+            //                 <a href="index.php?vista=listar_vacantes&close_vac_id='.$rows['vacante_id'].'"  class="button disable is-danger is-rounded is-small">Cerrar</a>
+            //             </td>';
+            //     } else {
+            //         $tabla.='<td>
+            //                 <a class="button is-warning is-active is-rounded is-static is-small">Cerrada</a>
+            //             </td>';
+            //     }
+            // }
             
             $tabla.='<td>
                         <a href="index.php?vista=vacante_detallada&vacante_id='.$rows['vacante_id'].'" class="button is-success is-rounded is-small">Detalles</a>

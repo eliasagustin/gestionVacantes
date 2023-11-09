@@ -57,11 +57,12 @@
         exit();
     }
 
-    if(verificar_datos("[a-zA-Z0-9$@.-]{7,100}",$clave_1) || verificar_datos("[a-zA-Z0-9$@.-]{7,100}",$clave_2)){
+    if(verificar_datos("[a-zA-Z0-9$@.-]{4,100}",$clave_1) || verificar_datos("[a-zA-Z0-9$@.-]{4,100}",$clave_2)){
         echo '
             <div class="notification is-danger is-light">
                 <strong>¡Ocurrio un error inesperado!</strong><br>
-                Las CLAVES no coinciden con el formato solicitado
+                Las CLAVES no coinciden con el formato solicitado de minimo 4 caracteres<br>
+                y los caracteres permitidos son: {a-z} {A-Z} {0-9} {$@.-}.
             </div>
         ';
         exit();

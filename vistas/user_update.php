@@ -30,8 +30,37 @@
 		<h2 class="subtitle">Actualizar datos de mi cuenta</h2>
         <div class="card container p-4">
         
-        <div class="form-rest mb-4 mt-2"></div>
+        <div class="form-rest mb-2 mt-2"></div>
+        <?php if ($_SESSION['rol']==4){ ?>
+        <div class="columns">
+            
+            <div class="column">
+                <?php
+                    $archivo = './uploads/'.$id.'_CV.pdf'; // Reemplaza esto con la ruta de tu archivo
 
+                    if (file_exists($archivo)) {
+                        echo "<div class='notification is-info is-light'>
+                                Hemos encontrado su CV, resuba nuevamente para sobreescribir.
+                                </div>";
+                    } else {
+                        echo "<div class='notification is-danger is-light'>
+                                No hemos encontrado su CV, por favor cargue uno en formato PDF para postularse.
+                                </div>";
+                    }
+                ?>
+            </div>
+            
+            <div class="column">
+                <form action="./php/procesar_pdf.php" method="POST" class="FormularioAjax" enctype="multipart/form-data">
+                    <label ></label>
+                    <input type="hidden" name="usuario_id" value="<?php echo $datos['usuario_id']; ?>" required >
+                    <input type="file" name="pdfFile" id="pdfFile" accept=".pdf">
+                    <br>
+                    <input type="submit" value="Subir PDF">
+                </form> 
+            </div>
+        </div>
+        <?php }; ?>
         <form action="./php/usuario_actualizar.php" method="POST" class="FormularioAjax" autocomplete="off" >
 
             <input type="hidden" name="usuario_id" value="<?php echo $datos['usuario_id']; ?>" required >
@@ -63,6 +92,7 @@
                         <input class="input" type="email" name="usuario_email" maxlength="70" value="<?php echo $datos['usuario_email']; ?>" >
                     </div>
                 </div>
+                
             </div>
             <br><br>
             <p class="has-text-centered">
@@ -73,13 +103,13 @@
                 <div class="column">
                     <div class="control">
                         <label>Clave</label>
-                        <input class="input" type="password" name="usuario_clave_1" pattern="[a-zA-Z0-9$@.-]{7,100}" maxlength="100" >
+                        <input class="input" type="password" name="usuario_clave_1" pattern="[a-zA-Z0-9$@.-]{4,100}" maxlength="100" >
                     </div>
                 </div>
                 <div class="column">
                     <div class="control">
                         <label>Repetir clave</label>
-                        <input class="input" type="password" name="usuario_clave_2" pattern="[a-zA-Z0-9$@.-]{7,100}" maxlength="100" >
+                        <input class="input" type="password" name="usuario_clave_2" pattern="[a-zA-Z0-9$@.-]{4,100}" maxlength="100" >
                     </div>
                 </div>
             </div>
@@ -98,6 +128,7 @@
         // 1 Administrador él solo puede modificar los roles y ver sus detalles
         // El maquetado se logra con un solo formulario de modificación
         if ($_SESSION['rol']==1){
+            
             ?>
             <h1 class="title">Usuarios</h1>
             <h2 class="subtitle">Actualizar permisos de usuario</h2>

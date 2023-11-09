@@ -27,7 +27,7 @@
         exit();
     }
 
-    if(verificar_datos("[a-zA-Z0-9$@.-]{7,100}",$clave)){
+    if(verificar_datos("[a-zA-Z0-9$@.-]{4,100}",$clave)){
         echo '
             <div class="notification is-danger is-light">
                 <strong>¡Ocurrio un error inesperado!</strong><br>
@@ -47,6 +47,7 @@
 
             if($row['usuario_usuario']==$usuario && password_verify($clave, $row['usuario_clave'])){
 
+                
                 $_SESSION['id']=$row['usuario_id'];
                 $_SESSION['nombre']=$row['usuario_nombre'];
                 $_SESSION['apellido']=$row['usuario_apellido'];

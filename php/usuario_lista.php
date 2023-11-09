@@ -42,9 +42,11 @@
 					<th>Usuario</th>
 					<th>Email</th>';
 
-					
-
-	if(isset($_SESSION['rol'])&&($_SESSION['rol']==1)){
+	if(isset($_SESSION['rol'])&&($_SESSION['rol']==1)){ // 1 - Administrador
+		$tabla.='<th colspan="2">Opciones</th>
+		';
+	}
+	if(isset($_SESSION['rol'])&&(($_SESSION['rol']==2) or ($_SESSION['rol']==3)) ){ // 2 - Jefe Cátedra | 3 - Responsable Administrativo
 		$tabla.='<th colspan="2">Opciones</th>
 		';
 	}
@@ -73,6 +75,13 @@
                     </td>
                     <td>
                         <a href="'.$url.$pagina.'&user_id_del='.$rows['usuario_id'].'" class="button is-danger is-rounded is-small">Eliminar</a>
+                    </td>
+            	';
+			}
+			if(isset($_SESSION['rol'])&&(($_SESSION['rol']==2) or ($_SESSION['rol']==3)) ){ // 2 - Jefe Cátedra | 3 - Responsable Administrativo
+				$tabla.='		
+                    <td>
+                        <a href="index.php?vista=user_details&user_id_up='.$rows['usuario_id'].'" class="button is-success is-rounded is-small">Detalles</a>
                     </td>
             	';
 			}
