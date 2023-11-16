@@ -33,14 +33,14 @@
 
 	$tabla.='
 	<div class="table-container">
-		<table class="table is-bordered is-striped is-narrow is-hoverable is-fullwidth">
+		<table class="table is-bordered is-striped is-narrow is-hoverable is-fullwidth" summary="Tabla de los usuarios del sistema módulo de gestión de vacantes">
 			<thead>
 				<tr class="has-text-centered">
-					<th>ID</th>
-					<th>Nombres</th>
-					<th>Apellidos</th>
-					<th>Usuario</th>
-					<th>Email</th>';
+					<th scope="col">ID</th>
+					<th scope="col">Nombres</th>
+					<th scope="col">Apellidos</th>
+					<th scope="col">Usuario</th>
+					<th scope="col">Email</th>';
 
 	if(isset($_SESSION['rol'])&&($_SESSION['rol']==1)){ // 1 - Administrador
 		$tabla.='<th colspan="2">Opciones</th>
@@ -62,7 +62,7 @@
 		foreach($datos as $rows){
 			$tabla.='
 				<tr class="has-text-centered" >
-					<td>'.$rows['usuario_id'].'</td>
+					<td scope="row">'.$rows['usuario_id'].'</td>
                     <td>'.$rows['usuario_nombre'].'</td>
                     <td>'.$rows['usuario_apellido'].'</td>
                     <td>'.$rows['usuario_usuario'].'</td>

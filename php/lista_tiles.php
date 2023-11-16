@@ -215,8 +215,8 @@
             ];
     }
     echo'
-        <hr class="navbar-divider">
-        <br>
+        <p class="navbar-divider">
+        <p>
         <div class="tile is-ancestor">
         ';
     for($i_aux =0; $i_aux < count($tile_tile['titulo']); $i_aux++){
@@ -224,13 +224,13 @@
         <a class="tile is-parent" href="index.php?vista='.$tile_tile['link'][$i_aux].'">
         <article class="tile is-child box centrar">
             <p class="subtitle" is-justify-content-center">
-            <br>'.$tile_tile['titulo'][$i_aux].'</p><br>
+            &nbsp'.$tile_tile['titulo'][$i_aux].'&nbsp</p>
         </article>
     </a>';
     }
     echo '
         </div>
-        <hr class="navbar-divider">
+        <p class="navbar-divider">
         ';
     for($i_aux =0; $i_aux < count($tile_tile['titulo']); $i_aux++){
             echo '

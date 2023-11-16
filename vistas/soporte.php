@@ -6,16 +6,15 @@
 	?>
     <h1 class="title">Formulario de contacto</h1>
     <br>
-    <h2 class="subtitle">Rellena el siguiente formulario para poder ayudarte/asesorarte</h2>
+    <p class="subtitle">Rellena el siguiente formulario para poder ayudarte/asesorarte</p>
 </div>
-<hr>
 <div class="form-rest mb-6 mt-6"></div>
 
 <form action="./php/enviar_email.php"  method="POST" class="FormularioAjax" autocomplete="off" enctype="multipart/form-data" >
 
 <div class="field is-horizontal ">
     <div class="field-label is-normal">
-        <label class="label">Nombre</label>
+        <label for="first_name" class="label">Nombre</label>
     </div>
     <div class="field-body">
         <div class="field is-narrow">
@@ -26,7 +25,8 @@
                                                                                                                   }else {
                                                                                                                     echo "value=\"".$_SESSION['nombre']. "\" disabled";
                                                                                                                   }
-                                                                                                                ?> required>
+                                                                                                                ?> 
+                         pattern="[a-zA-ZáéíóúÁÉÍÓÚñÑ ]{3,40}" maxlength="40" title="Ingrese un nombre de 3 a 40 caracteres alfabéticos" required>
                 </div>
             </div>
         </div>
@@ -35,13 +35,13 @@
 
 <div class="field is-horizontal ">
     <div class="field-label is-normal">
-        <label class="label">E-mail</label>
+        <label for="email" class="label">E-mail</label>
     </div>
     <div class="field-body">
         <div class="field is-narrow">
             <div class="control">
                 <div class="is-fullwidth">
-                  <input class="input" type="email" size=36 name="email" placeholder="Ingrese su correo electrónico" <?php if (!isset($_SESSION['rol'])){
+                  <input class="input" type="email" size=36 name="email" maxlength="70" title="Ingrese un email válido de máximo 70 caracteres" placeholder="Ingrese su correo electrónico" <?php if (!isset($_SESSION['rol'])){
                                                                                                                     echo 'value=""';
                                                                                                                   }else {
                                                                                                                     echo "value=\"".$_SESSION['email'] . "\" disabled";
@@ -55,13 +55,13 @@
 
 <div class="field is-horizontal ">
     <div class="field-label is-normal">
-        <label class="label">Teléfono (opc)</label>
+        <label for="telefono" class="label">Teléfono (opc)</label>
     </div>
     <div class="field-body">
         <div class="field is-narrow">
             <div class="control">
                 <div class="is-fullwidth">
-                  <input class="input" type="tel" size=36 name="telefono" placeholder="Ingrese su telefono">
+                  <input class="input" type="tel" size=36 name="telefono" placeholder="Ingrese su telefono" title="Ingrese su telefono usando caracteres alfanuméricos (opcional)">
                 </div>
             </div>
         </div>
@@ -70,12 +70,12 @@
 
 <div class="field is-horizontal">
     <div class="field-label is-normal">
-        <label class="label">Mensaje</label>
+        <label for="mensaje" class="label">Mensaje</label>
     </div>
     <div class="field-body">
         <div class="field">
             <div class="control">
-                <textarea class="textarea" minlength="10" maxlength="250" name="mensaje" placeholder="Desarrolle su consulta en 250 caracteres max." required></textarea>
+                <textarea class="textarea" minlength="10" maxlength="250" name="mensaje" placeholder="Desarrolle su consulta en 250 caracteres max." title="Ingrese un mensaje de minimo 25 a 250 caracteres" required></textarea>
             </div>
         </div>
     </div>

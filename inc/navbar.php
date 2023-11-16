@@ -2,7 +2,7 @@
 
     <div class="navbar-brand">
         <a class="navbar-item" href="index.php?vista=home">
-        <img src="./img/logo.png" alt="Modulo Gestion de Vacantes" width="40" height="80">
+        <img src="./img/logo.png" alt="Modulo Gestion de Vacantes" desc="Incio" width="40" height="80">
         </a>
 
         <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
@@ -23,7 +23,7 @@
             
             <?php require "./php/rol_consulta.php"; ?>
             "</div>
-            <hr class="navbar-divider">
+            <p class="navbar-divider"> </p>
             <div class="navbar-item">
                 <div class="buttons">
                     <?php 
