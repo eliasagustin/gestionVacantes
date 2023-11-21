@@ -102,13 +102,13 @@ if(isset($_GET['us_id_act_OM'])) {
                                         $postulante_totales = mysqli_num_rows($postu);
                                         if(mysqli_num_rows($postu)>0){
 
-                                            echo '<table class="table is-fullwidth">
+                                            echo '<table class="table is-fullwidth" summary="Tabla de los usuarios inscripta a la vacante actual">
                                                 <thead>
                                                     <tr class="has-text-centered">
-                                                        <th>Nombre</th>
-                                                        <th>Apellido</th>
-                                                        <th style="width: 200px;">Orden Mérito</th>
-                                                        <th>CV Link</th>
+                                                        <th scope="col">Nombre</th>
+                                                        <th scope="col">Apellido</th>
+                                                        <th scope="col" style="width: 200px;">Orden Mérito</th>
+                                                        <th scope="col">CV Link</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>';
@@ -122,7 +122,7 @@ if(isset($_GET['us_id_act_OM'])) {
                                                 ?>
                                                 <tr class="has-text-centered">
                             
-                                                <td><?php echo $vac_aux['usuario_nombre']; ?></td>
+                                                <td scope="row"><?php echo $vac_aux['usuario_nombre']; ?></td>
                                             
                                                 <td><?php echo $vac_aux['usuario_apellido']; ?></td>
 
@@ -166,7 +166,7 @@ if(isset($_GET['us_id_act_OM'])) {
                                                 </td>
 
                                                 <td><?php
-                                                $ruta = 'http://localhost/Gestion_Vacantes/gestionVacantes/uploads/'.$row4['usuario_id'].'_CV.pdf';
+                                                $ruta = 'http://entornos-graficos.free.nf/uploads/'.$row4['usuario_id'].'_CV.pdf';
                                                 $URL='<a href="'.$ruta.'" target="_blank">ABRIR CV'.'</a>';
                                                 echo $URL;?>
                                                 </td>

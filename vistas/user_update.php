@@ -39,9 +39,10 @@
                     $archivo = './uploads/'.$id.'_CV.pdf'; // Reemplaza esto con la ruta de tu archivo
 
                     if (file_exists($archivo)) {
+                        $ruta = 'http://entornos-graficos.free.nf/uploads/'.$id.'_CV.pdf';
+                        $URL='<a class="button is-info is-rounded is-small is centered" href="'.$ruta.'" target="_blank">ABRIR CV'.'</a>';
                         echo "<div class='notification is-info is-light'>
-                                Hemos encontrado su CV, resuba nuevamente para sobreescribir.
-                                </div>";
+                        Hemos encontrado su CV, resuba nuevamente para sobreescribir.<p class='has-text-centered'>".$URL."</p></div>";
                     } else {
                         echo "<div class='notification is-danger is-light'>
                                 No hemos encontrado su CV, por favor cargue uno en formato PDF para postularse.
@@ -52,7 +53,7 @@
             
             <div class="column">
                 <form action="./php/procesar_pdf.php" method="POST" class="FormularioAjax" enctype="multipart/form-data">
-                    <label ></label>
+                    <label for="pdfFile">Carga PDF</label><br>
                     <input type="hidden" name="usuario_id" value="<?php echo $datos['usuario_id']; ?>" required >
                     <input type="file" name="pdfFile" id="pdfFile" accept=".pdf">
                     <br>
@@ -68,28 +69,28 @@
             <div class="columns">
                 <div class="column">
                     <div class="control">
-                        <label>Nombres</label>
-                        <input class="input" type="text" name="usuario_nombre" pattern="[a-zA-ZáéíóúÁÉÍÓÚñÑ ]{3,40}" maxlength="40" required value="<?php echo $datos['usuario_nombre']; ?>" >
+                        <label for="usuario_nombre">Nombres</label>
+                        <input class="input" type="text" name="usuario_nombre" title="Ingrese un nombre de 3 a 40 caracteres alfabéticos" pattern="[a-zA-ZáéíóúÁÉÍÓÚñÑ ]{3,40}" maxlength="40" required value="<?php echo $datos['usuario_nombre']; ?>" >
                     </div>
                 </div>
                 <div class="column">
                     <div class="control">
-                        <label>Apellidos</label>
-                        <input class="input" type="text" name="usuario_apellido" pattern="[a-zA-ZáéíóúÁÉÍÓÚñÑ ]{3,40}" maxlength="40" required value="<?php echo $datos['usuario_apellido']; ?>" >
+                        <label for="usuario_apellido">Apellidos</label>
+                        <input class="input" type="text" name="usuario_apellido" title="Ingrese un apellido de 3 a 40 caracteres alfabéticos" pattern="[a-zA-ZáéíóúÁÉÍÓÚñÑ ]{3,40}" maxlength="40" required value="<?php echo $datos['usuario_apellido']; ?>" >
                     </div>
                 </div>
             </div>
             <div class="columns">
                 <div class="column">
                     <div class="control">
-                        <label>Usuario</label>
-                        <input class="input" type="text" name="usuario_usuario" pattern="[a-zA-Z0-9]{4,20}" maxlength="20" required value="<?php echo $datos['usuario_usuario']; ?>" >
+                        <label for="usuario_usuario">Usuario</label>
+                        <input class="input" type="text" name="usuario_usuario" pattern="[a-zA-Z0-9]{4,20}" maxlength="20" title="Ingrese un usuario de 4 a 20 caracteres alfanuméricos" required value="<?php echo $datos['usuario_usuario']; ?>" >
                     </div>
                 </div>
                 <div class="column">
                     <div class="control">
-                        <label>Email</label>
-                        <input class="input" type="email" name="usuario_email" maxlength="70" value="<?php echo $datos['usuario_email']; ?>" >
+                        <label for="usuario_email">Email</label>
+                        <input class="input" type="email" name="usuario_email" maxlength="70" title="Ingrese un email válido de máximo 70 caracteres" value="<?php echo $datos['usuario_email']; ?>" >
                     </div>
                 </div>
                 
@@ -102,14 +103,14 @@
             <div class="columns">
                 <div class="column">
                     <div class="control">
-                        <label>Clave</label>
-                        <input class="input" type="password" name="usuario_clave_1" pattern="[a-zA-Z0-9$@.-]{4,100}" maxlength="100" >
+                        <label for="usuario_clave_1">Clave</label>
+                        <input class="input" type="password" name="usuario_clave_1" pattern="[a-zA-Z0-9$@.-]{4,100}" title="Ingrese una cláve compuesta por alfanuméricos y simbolos:'$@.-'de máximo 100 caracteres y mínimo 4" maxlength="100" >
                     </div>
                 </div>
                 <div class="column">
                     <div class="control">
-                        <label>Repetir clave</label>
-                        <input class="input" type="password" name="usuario_clave_2" pattern="[a-zA-Z0-9$@.-]{4,100}" maxlength="100" >
+                        <label for="usuario_clave_2">Repetir clave</label>
+                        <input class="input" type="password" name="usuario_clave_2" pattern="[a-zA-Z0-9$@.-]{4,100}" title="Ingrese y repita una cláve compuesta por alfanuméricos y simbolos:'$@.-'de máximo 100 caracteres y mínimo 4" maxlength="100" >
                     </div>
                 </div>
             </div>
