@@ -166,7 +166,7 @@ if(isset($_GET['us_id_act_OM'])) {
                                                 </td>
 
                                                 <td><?php
-                                                $ruta = 'http://entornos-graficos.free.nf/uploads/'.$row4['usuario_id'].'_CV.pdf';
+                                                $ruta = $_SERVER['PHP_HOST'].'/uploads/'.$row4['usuario_id'].'_CV.pdf';
                                                 $URL='<a href="'.$ruta.'" target="_blank">ABRIR CV'.'</a>';
                                                 echo $URL;?>
                                                 </td>

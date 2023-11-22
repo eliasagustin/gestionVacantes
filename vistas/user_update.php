@@ -39,7 +39,7 @@
                     $archivo = './uploads/'.$id.'_CV.pdf'; // Reemplaza esto con la ruta de tu archivo
 
                     if (file_exists($archivo)) {
-                        $ruta = 'http://entornos-graficos.free.nf/uploads/'.$id.'_CV.pdf';
+                        $ruta = $_SERVER['PHP_HOST'].'/uploads/'.$id.'_CV.pdf';
                         $URL='<a class="button is-info is-rounded is-small is centered" href="'.$ruta.'" target="_blank">ABRIR CV'.'</a>';
                         echo "<div class='notification is-info is-light'>
                         Hemos encontrado su CV, resuba nuevamente para sobreescribir.<p class='has-text-centered'>".$URL."</p></div>";
