@@ -1,19 +1,13 @@
 <?php
+	    use Dotenv\Dotenv;
+		require_once __DIR__ . '/../vendor/autoload.php';
+		$dotenv = Dotenv::createImmutable(__DIR__);
+		$dotenv->load('.env');
 	
 	# Conexion a la base de datos #
 	function conexion(){
-		$host="localhost";
-		$username="agustin";
-		// $username="id20742267_gvac_us";
-		$password="tuvieja";
-		// $password="Gvac_pass1";
-		// $dbname="id20742267_gvac";
-		$dbname="gvac";
-		mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
-		$mysqli = new mysqli($host,$username,$password,$dbname);
-		//$pdo = new PDO('mysql:host=localhost;dbname=gvac', 'agustin', 'tuvieja');
+		$mysqli = new mysqli($_ENV["DATABASE_HOSTNAME"],$_ENV["DATABASE_USERNAME"],$_ENV["DATABASE_PASSWORD"],$_ENV["DATABASE_NAME"]);
 		return $mysqli;
-		//return $pdo;
 	}
 
 	# Verificar datos #

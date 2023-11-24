@@ -1,4 +1,19 @@
-<?php require "./inc/session_start.php"; ?>
+<?php 
+    namespace prueba;
+//     use Dotenv\Dotenv;
+//     require_once __DIR__ . '/vendor/autoload.php';
+    
+//     // $dotenv = new Dotenv();
+//     $dotenv = Dotenv::createImmutable(__DIR__);
+//     $dotenv->load('.env');
+
+// // $dotenv->load('../.env');
+
+
+//     echo $_ENV["DATABASE_HOSTNAME"];
+    // use Dotenv\DotEnv as Dotenv;
+    require "./inc/session_start.php";
+?>
 <!DOCTYPE html>
 <html lang="es">
     <head>
