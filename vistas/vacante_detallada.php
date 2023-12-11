@@ -167,6 +167,7 @@ if(isset($_GET['us_id_act_OM'])) {
 
                                                 <td><?php
                                                 $ruta = $_SERVER['PHP_HOST'].'/uploads/'.$row4['usuario_id'].'_CV.pdf';
+                                                // $ruta = 'http://localhost/Gestion_Vacantes/gestionVacantes/uploads/'.$row4['usuario_id'].'_CV.pdf';
                                                 $URL='<a href="'.$ruta.'" target="_blank">ABRIR CV'.'</a>';
                                                 echo $URL;?>
                                                 </td>
@@ -182,14 +183,10 @@ if(isset($_GET['us_id_act_OM'])) {
                                         // $postu=null;
                                     ?>
 
-
-
-
-
                     </div>
                 </div>
                     <footer class="card-footer">
-                        <?php 
+                        <?php
                             include "./inc/btn_back.php";
                         ?>
                         </div>

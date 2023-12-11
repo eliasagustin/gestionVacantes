@@ -88,9 +88,19 @@
 				break;
 			}
 			if($pagina==$i){
+				if(($i==$Npaginas)){
+					//For de menor a mayor
+					for($i2=$Npaginas-1; $i2>1; $i2--){
+					$tabla.='<li><a class="pagination-link" href="'.$url.$i2.'">'.$i2.'</a></li>';
+					}
+				}
 				$tabla.='<li><a class="pagination-link is-current" href="'.$url.$i.'">'.$i.'</a></li>';
+				
 			}else{
-				$tabla.='<li><a class="pagination-link" href="'.$url.$i.'">'.$i.'</a></li>';
+				if(($i!=$pagina)&($i<$Npaginas)){ //FUNCIONA
+				// if(($i!=$pagina)){
+					$tabla.='<li><a class="pagination-link" href="'.$url.$i.'">'.$i.'</a></li>';
+				}
 			}
 			$ci++;
 		}
