@@ -154,7 +154,7 @@ if(isset($_GET['us_id_act_OM'])) {
                                                             
                                                                 <?php 
                                                                     if(isset($_SESSION['rol'])&&($estado_vacacante == 'abierta')&&(($_SESSION['rol']==2) or ($_SESSION['rol']==3)) ){ // 2 - Jefe Cátedra | 3 - Responsable Administrativo
-                                                                        echo '<div class="control"><button type="submit" class="button is-info is-rounded">Modificar</button></div>';
+                                                                        echo '<div class="control"><button type="submit" class="button is-info is-rounded" title="Guardar Orden de Mérito">Modificar</button></div>';
                                                                     }
                                                                 ?>
                                                             
@@ -231,7 +231,7 @@ if(isset($_GET['us_id_act_OM'])) {
                                         <p class="card-footer-item">
                                             <span>
                                             
-                                            <a href="index.php?vista=listar_vacantes&close_vac_id='.$row['vacante_id'].'"  class="button is-danger is-rounded is-small">Cerrar vacante</a>
+                                            <a href="index.php?vista=listar_vacantes&close_vac_id='.$row['vacante_id'].'"  class="button is-danger is-rounded is-small" title="Cerrar Vacante con fecha actuál">Cerrar vacante</a>
                                             </span>
                                         </p>';
                                 }

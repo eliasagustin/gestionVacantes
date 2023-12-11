@@ -36,13 +36,13 @@ include "./php/breadcum.php";?>
         <div class="column">
             <div class="field is-horizontal">
                 <div class="field-label is-normal">
-                    <label class="label">Estado</label>
+                    <label class="label" for="estado">Estado</label>
                 </div>
                 <div class="field-body">
                     <div class="field is-narrow">
                         <div class="control">
                             <div class="select is-fullwidth">
-                            <select name="estado">
+                            <select name="estado" id="estado">
                                 <option value="" selected="Abierta" ></option>
                                 <option value="Abierta">Abierta</option>
                                 <option value="Cerrada">Cerrada</option>
@@ -55,13 +55,13 @@ include "./php/breadcum.php";?>
 
             <div class="field is-horizontal ">
                 <div class="field-label is-normal">
-                    <label class="label">Materia</label>
+                    <label class="label" for="vacante_materia">Materia</label>
                 </div>
                 <div class="field-body">
                     <div class="field is-narrow">
                         <div class="control">
                             <div class="select is-fullwidth">
-                            <select name="vacante_materia">
+                            <select name="vacante_materia" id="vacante_materia">
                                 <option value="" selected="" ></option>
                                 <?php
                                     $materias=conexion();
@@ -84,13 +84,13 @@ include "./php/breadcum.php";?>
         <div class="column">
             <div class="field is-horizontal">
                 <div class="field-label is-normal">
-                    <label class="label">Apertura desde:</label>
+                    <label class="label" for="fecha_apertura_I">Apertura desde:</label>
                 </div>
                 <div class="field-body">
                     <div class="field is-narrow">
                         <div class="control">
                             <div class="is-fullwidth">
-                                <input class="input" type="date" name="fecha_apertura_I" value="">
+                                <input class="input" type="date" name="fecha_apertura_I" id="fecha_apertura_I" value="">
                             </div>
                         </div>
                     </div>
@@ -99,13 +99,13 @@ include "./php/breadcum.php";?>
             
             <div class="field is-horizontal">
                 <div class="field-label is-normal">
-                    <label class="label">Cierre desde:</label>
+                    <label class="label" for="fecha_cierre_I">Cierre desde:</label>
                 </div>
                 <div class="field-body">
                     <div class="field is-narrow">
                         <div class="control">
                             <div class="is-fullwidth">
-                                <input class="input" type="date" name="fecha_cierre_I" value="">
+                                <input class="input" type="date" name="fecha_cierre_I" id="fecha_cierre_I" value="">
                             </div>
                         </div>
                     </div>
@@ -117,13 +117,13 @@ include "./php/breadcum.php";?>
         <div class="column">
             <div class="field is-horizontal">
                 <div class="field-label is-normal">
-                    <label class="label"> a </label>
+                    <label class="label" for="fecha_apertura_F"> a </label>
                 </div>
                 <div class="field-body">
                     <div class="field is-narrow">
                         <div class="control">
                             <div class="is-fullwidth">
-                                <input class="input" type="date" name="fecha_apertura_F" value="">
+                                <input class="input" type="date" name="fecha_apertura_F" id="fecha_apertura_F" value="">
                             </div>
                         </div>
                     </div>
@@ -131,13 +131,13 @@ include "./php/breadcum.php";?>
             </div>
             <div class="field is-horizontal">
                 <div class="field-label is-normal">
-                    <label class="label"> a </label>
+                    <label class="label" for="fecha_cierre_F"> a </label>
                 </div>
                 <div class="field-body">
                     <div class="field is-narrow">
                         <div class="control">
                             <div class="is-fullwidth">
-                                <input class="input" type="date" name="fecha_cierre_F" value="">
+                                <input class="input" type="date" name="fecha_cierre_F" id="fecha_cierre_F" value="">
                             </div>
                         </div>
                     </div>
@@ -151,13 +151,13 @@ include "./php/breadcum.php";?>
         <div class="column">
             <div class="field is-horizontal">
                 <div class="field-label is-normal">
-                    <label class="label">Ordenado por</label>
+                    <label class="label" for="orden">Ordenado por</label>
                 </div>
                 <div class="field-body">
                     <div class="field is-narrow">
                         <div class="control">
                             <div class="select is-fullwidth">
-                                <select name="orden" required>
+                                <select name="orden" id="orden" required>
                                     <option value="vacante_id" selected>Vacante id</option>
                                     <option value="vacante_nombre_puesto">Puesto</option>
                                     <option value="vacante_fecha_apertura">Fecha Apertura</option>
@@ -173,13 +173,13 @@ include "./php/breadcum.php";?>
 
             <div class="field is-horizontal">
                 <div class="field-label is-normal">
-                    <label class="label">Orden</label>
+                    <label class="label" for="ord" >Orden</label>
                 </div>
                 <div class="field-body">
                     <div class="field is-narrow">
                         <div class="control">
                             <div class="select is-fullwidth">
-                            <select name="ord" required>
+                            <select name="ord" id="ord" required>
                                 <option value="ASC" selected>Ascendente</option>
                                 <option value="DESC">Descendente</option>
                             </select>
@@ -192,7 +192,7 @@ include "./php/breadcum.php";?>
     </div>
     <p class="has-text-right mb-5">
         <input type="hidden" id="custId" name="RId" value="<?php echo $rol;?>">
-        <button type="submit" class="button is-info is-rounded">Filtrar</button>&nbsp;&nbsp;
+        <button type="submit" class="button is-info is-rounded" title="Aplicar filtro/s" >Filtrar</button>&nbsp;&nbsp;
     </p>
 </form>
     <div class="form-rest">

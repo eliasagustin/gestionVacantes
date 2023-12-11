@@ -76,7 +76,7 @@ require_once "main.php";
 
     # Cerrar Vacante #
     if(isset( $_GET['close_vac_id']) ){
-        if($_SESSION['rol']==3){
+        if(($_SESSION['rol']==2) or ($_SESSION['rol']==3)){
             require_once "./php/cerrar_vacante.php";
         }
     }
@@ -151,7 +151,7 @@ require_once "main.php";
             // }
             
             $tabla.='<td>
-                        <a href="index.php?vista=vacante_detallada&vacante_id='.$rows['vacante_id'].'" class="button is-success is-rounded is-small">Detalles</a>
+                        <a href="index.php?vista=vacante_detallada&vacante_id='.$rows['vacante_id'].'" class="button is-success is-rounded is-small" title="Detalles de Vacante">Detalles</a>
                     </td>
                 </tr>
             ';

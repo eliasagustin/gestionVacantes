@@ -221,7 +221,7 @@
         ';
     for($i_aux =0; $i_aux < count($tile_tile['titulo']); $i_aux++){
         echo '
-        <a class="tile is-parent" href="index.php?vista='.$tile_tile['link'][$i_aux].'">
+        <a class="tile is-parent" title="'.$tile_tile['titulo'][$i_aux].'" href="index.php?vista='.$tile_tile['link'][$i_aux].'">
         <article class="tile is-child box centrar">
             <p class="subtitle" is-justify-content-center">
             &nbsp'.$tile_tile['titulo'][$i_aux].'&nbsp</p>

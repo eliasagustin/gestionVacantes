@@ -1,4 +1,7 @@
 <?php
+
+require_once "./php/main.php";
+
 	$inicio = ($pagina>0) ? (($pagina * $registros)-$registros) : 0;
 	$tabla="";
 
@@ -71,12 +74,12 @@
             if(isset($_SESSION['rol'])&&($_SESSION['rol']==4)){
                 $tabla.='
                     <td>
-                        <a href="index.php?vista=vacante_detallada&vacante_id='.$rows['vacante_id'].'" class="button is-success is-rounded is-small">Detalles</a>
+                        <a href="index.php?vista=vacante_detallada&vacante_id='.$rows['vacante_id'].'" class="button is-success is-rounded is-small" title="Detalles de postulación">Detalles</a>
                     </td>';
                     if($v_estado==true){
                         $tabla.='
                         <td>
-                            <a href="index.php?vista=listar_postulaciones&pos_id_del='.$rows['postulacion_id'].'"  class="button is-danger is-rounded is-small">Eliminar</a>
+                            <a href="index.php?vista=listar_postulaciones&pos_id_del='.$rows['postulacion_id'].'"  class="button is-danger is-rounded is-small" title="Eliminar la postulación">Eliminar</a>
                         </td>';
                     }
             }
@@ -117,7 +120,22 @@
     $conexion=null;
     echo $tabla;
 
+            # Seteo las variables necesarias para que funcione el PAGINADOR, luego lo llamo #
+            if(!isset($_GET['page'])){ // consulto si viene pag iniciada
+                $pagina=1;              //la inicio
+            }else{
+                $pagina=(int) $_GET['page'];  // guardo el numero de pagina en la variable $pagina
+                if($pagina<=1){             //me fijo que no venga en negativo
+                    $pagina=1;              //si viniera en negativo la seteo en 1
+                }
+            }
+    
+            $pagina=limpiar_cadena($pagina);  //por las dudas de vunerabilidad la limpio
+            $url="index.php?vista=listar_postulaciones&user_id=".$mi_id."&page=";
+            $registros=3; //        <==== Seteo la cantidad de registros por pag, que se van a mostrar
+            $busqueda="";
+
     if($total>=1 && $pagina<=$Npaginas){
-        echo paginador_tablas($pagina,$Npaginas,"",7);
+        echo paginador_tablas($pagina,$Npaginas,$url,$registros);
     }
 ?>

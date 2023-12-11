@@ -176,7 +176,7 @@
                 <p class="has-text-centered">Abra el desplegable, seleccione uno nuevo rol, luego haga click el boton "actualizar rol".</p>
                 <br>
                 <p class="has-text-centered">
-                    <button type="submit" class="button is-success is-rounded is-small">Actualizar rol</button>
+                    <button type="submit" class="button is-success is-rounded is-small" title="Guardar modificaciones realizadas">Actualizar rol</button>
                 </p>
             
         <?php

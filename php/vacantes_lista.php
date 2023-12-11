@@ -72,17 +72,17 @@ require_once "main.php";
 				if($_SESSION['rol']==4){
 					if(!in_array($rows['vacante_id'], $postulaciones)){
 						$tabla.='<td>
-								<a href="index.php?vista=listar_vacantes_abiertas&vac_id_pos='.$rows['vacante_id'].'" class="button is-info is-rounded is-small">Postularse</a>
+								<a href="index.php?vista=listar_vacantes_abiertas&vac_id_pos='.$rows['vacante_id'].'" title="Click para postularse a vacante" class="button is-info is-rounded is-small">Postularse</a>
 							</td>';
 					} else {
 						$tabla.='<td>
-						<a class="button is-warning is-active is-rounded is-static is-small">Presentada</a>
+						<a class="button is-warning is-active is-rounded is-static is-small" title="Ya estás postulado en esta vacante">Presentada</a>
 						</td>';
 					}
 				}
 			} 
 			$tabla.='<td>
-                        <a href="index.php?vista=vacante_detallada&vacante_id='.$rows['vacante_id'].'" class="button is-success is-rounded is-small">Detalles</a>
+                        <a href="index.php?vista=vacante_detallada&vacante_id='.$rows['vacante_id'].'" class="button is-success is-rounded is-small"  title="Abrir detalles de vacante">Detalles</a>
                     </td>
                 </tr>
             ';

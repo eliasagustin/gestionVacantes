@@ -1,7 +1,7 @@
 <nav class="navbar" role="navigation" aria-label="main navigation">
 
     <div class="navbar-brand">
-        <a class="navbar-item" href="index.php?vista=home">
+        <a class="navbar-item" href="index.php?vista=home" title="Recarga página inicial">
         <img src="./img/logo.png" alt="Modulo Gestion de Vacantes" desc="Incio" width="40" height="80">
         </a>
 
@@ -28,11 +28,11 @@
                 <div class="buttons">
                     <?php 
                         if (isset($_SESSION['rol'])){
-                            echo ' <a href="index.php?vista=logout" class="button is-link is-rounded">
+                            echo ' <a href="index.php?vista=logout" class="button is-link is-rounded" title="Click para Desloguearse">
                                         Salir
                                     </a>';
                         } else {
-                            echo ' <a href="index.php?vista=login" class="button is-link is-rounded">
+                            echo ' <a href="index.php?vista=login" class="button is-link is-rounded" title="Click para Iniciar Sesión">
                                         Inicio de Sesión
                                     </a>';
                         }
@@ -50,8 +50,8 @@
       
         <aside class="menu">
             <ul class="menu-list">
-                <li><a class="is-active" href="index.php?vista=home">Inicio</a></li>
-                <li><a class="is-active" href="index.php?vista=vacante">Vacantes</a>
+                <li><a class="is-active" href="index.php?vista=home" title="Página inicial">Inicio</a></li>
+                <li><a class="is-active" href="index.php?vista=vacante" title="Página Vacantes">Vacantes</a>
                     <ul>
                         <?php
                             if (isset($_SESSION['id'])){
@@ -59,15 +59,15 @@
                                 $mi_rol = $_SESSION['rol'];
                                 if($mi_rol==3)
                                 echo '
-                                    <li><a href="index.php?vista=abrir_vacante">Abrir vacante</a></li>
+                                    <li><a href="index.php?vista=abrir_vacante" title="Formulario para abrir vacante">Abrir vacante</a></li>
                                 ';
                             }
                         ?>
-                        <li><a href="index.php?vista=listar_vacantes_abiertas">Listar vacantes abiertas</a></li>
+                        <li><a href="index.php?vista=listar_vacantes_abiertas" title="Sección listar vacantes abiertas solamente">Listar vacantes abiertas</a></li>
 
                         <?php
                             if (isset($_SESSION['id'])){
-                                echo '<li><a href="index.php?vista=listar_vacantes">Listar vacantes</a></li>';
+                                echo '<li><a href="index.php?vista=listar_vacantes" title="Listar vacantes con filtro avanzado">Listar vacantes</a></li>';
                             }
                         ?>
                     </ul>
@@ -77,9 +77,9 @@
                         $mi_rol = $_SESSION['rol'];
                         if($mi_rol==4)
                         echo '
-                            <li><a class="is-active" href="index.php?vista=postulacion">Postulaciones</a>
+                            <li><a class="is-active" href="index.php?vista=postulacion" title="Sección de postulaciones">Postulaciones</a>
                                 <ul>
-                                    <li><a href="index.php?vista=listar_postulaciones&user_id='.$mi_rol.'">Mis postulaciones</a></li>
+                                    <li><a title="Ver todas mis postulaciones" href="index.php?vista=listar_postulaciones&user_id='.$mi_rol.'">Mis postulaciones</a></li>
                                 </ul>
                             </li>
                         ';

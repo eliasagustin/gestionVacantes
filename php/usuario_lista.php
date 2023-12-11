@@ -81,7 +81,7 @@
 			if(isset($_SESSION['rol'])&&(($_SESSION['rol']==2) or ($_SESSION['rol']==3)) ){ // 2 - Jefe Cátedra | 3 - Responsable Administrativo
 				$tabla.='		
                     <td>
-                        <a href="index.php?vista=user_details&user_id_up='.$rows['usuario_id'].'" class="button is-success is-rounded is-small">Detalles</a>
+                        <a href="index.php?vista=user_details&user_id_up='.$rows['usuario_id'].'" class="button is-success is-rounded is-small" title="Abrir detalles del usuario">Detalles</a>
                     </td>
             	';
 			}
